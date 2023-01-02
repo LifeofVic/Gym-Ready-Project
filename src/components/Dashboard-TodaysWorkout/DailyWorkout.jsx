@@ -17,8 +17,8 @@ export default function TodaysWorkout() {
 		<div className='dailyWorkoutContainer'>
 			<h3>Daily Workout Component </h3>
 			<p>
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry.
+				This component will display the exercise desired according to the id
+				number...
 			</p>
 			<button onClick={getWorkout}> Get Random Workout </button>
 			{JSON.stringify(dailyWorkout)}
