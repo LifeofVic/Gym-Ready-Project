@@ -15,7 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import Dashboard from '../Dashboard/Dashboard';
-import InfoPage from '../InfoPage/InfoPage';
+import TodaysWorkout from '../TodaysWorkout-View/TodaysWorkout';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -34,7 +34,7 @@ function App() {
 	return (
 		<Router>
 			<div>
-				<Nav />
+				{/* <Nav /> This appeared on top of the page */}
 				<Switch>
 					{/* Visiting localhost:3000 will redirect to localhost:3000/home */}
 					<Redirect exact from='/' to='/home' />
@@ -61,8 +61,8 @@ function App() {
 					<ProtectedRoute
 						// logged in shows InfoPage else shows LoginPage
 						exact
-						path='/info'>
-						<InfoPage />
+						path='/today'>
+						<TodaysWorkout />
 					</ProtectedRoute>
 
 					<Route exact path='/login'>

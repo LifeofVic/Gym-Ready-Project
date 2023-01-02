@@ -13,7 +13,7 @@ function Dashboard() {
 			<p>Your ID is: {user.id}</p>
 			<DailyWorkout />
 			<WeeklyRoutine />
-			<LogOutButton className='btn' />
+			{/* <LogOutButton className='btn' /> */}
 		</div>
 	);
 }
