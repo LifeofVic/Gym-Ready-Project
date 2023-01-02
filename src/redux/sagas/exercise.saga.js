@@ -2,21 +2,23 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* randomExercise(action) {
+	console.log(
+		'Making a random exercise request to db to display onto dashboard'
+	);
 	try {
-		console.log(
-			'Making a random exercise request to db to display onto dashboard'
-		);
-		const randomExercise = yield axios.get('/api/exercise');
-		yield put({ type: 'SET_RANDOM_EXERCISE', payload: randomExercise });
+		const randomExercise = yield axios.get('/exercise');
+		console.log('Random Exercise is: ', randomExercise);
+		yield put({ type: 'SET_RANDOM_EXERCISE', payload: randomExercise.data });
 	} catch (error) {
 		console.log(
-			'Error is fetching from server random exercises using exercise.saga'
+			'Error in fetching from server random exercises using exercise.saga',
+			error
 		);
 	}
 }
 
 function* exerciseSaga() {
-	yield takeLatest('RANDOM_EXERCISE', randomExercise);
+	yield takeLatest('FETCH_RANDOM_EXERCISE', randomExercise);
 }
 
 export default exerciseSaga;
