@@ -1,8 +1,9 @@
-import '../Dashboard-TodaysWorkout/DailyWorkout.css';
-export default function TodaysWorkout() {
+import '../Dashboard-WeeklyRoutine/WeeklyRoutine.css';
+
+export default function WeeklyRoutine() {
 	return (
-		<div className='dailyWorkoutContainer'>
-			<h3>Daily Workout Component </h3>
+		<div className='Weekly-Container'>
+			<h3>Weekly Routine Component</h3>
 			<p>
 				Lorem Ipsum is simply dummy text of the printing and typesetting
 				industry. Lorem Ipsum has been the industry's standard dummy text ever
