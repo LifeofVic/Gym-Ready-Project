@@ -9,12 +9,12 @@ const router = express.Router();
 router.get('/', (req, res) => {
 	console.log('In the exercise.Router', req.body);
 	let randomNumber = Math.random() * (1327 - 1) + 1;
-	const queryText = `SELECT * FROM "exercise" WHERE "id" = $1;`;
+	const queryText = `SELECT * FROM "exercise" WHERE "id" = 1;`;
 	console.log('In Exercise router!');
 	pool
-		.query(queryText, [randomNumber])
-		.then(response => {
-			res.send(response.data);
+		.query(queryText)
+		.then(result => {
+			res.send(result.rows);
 		})
 		.catch(err => {
 			console.log(
