@@ -3,8 +3,11 @@ import axios from 'axios';
 
 function* randomExercise(action) {
 	try {
-		yield put({ type: 'RANDOM_EXERCISE' });
-		yield axios.get('/api/exercise');
+		console.log(
+			'Making a random exercise request to db to display onto dashboard'
+		);
+		const randomExercise = yield axios.get('/api/exercise');
+		yield put({ type: 'SET_RANDOM_EXERCISE', payload: randomExercise });
 	} catch (error) {
 		console.log(
 			'Error is fetching from server random exercises using exercise.saga'

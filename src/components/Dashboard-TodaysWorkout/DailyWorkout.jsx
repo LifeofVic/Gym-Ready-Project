@@ -1,7 +1,7 @@
 import '../Dashboard-TodaysWorkout/DailyWorkout.css';
 import React from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 export default function TodaysWorkout() {
 	const dailyWorkout = useSelector(store => store.dailyWorkout);
 	var dispatch = useDispatch();
