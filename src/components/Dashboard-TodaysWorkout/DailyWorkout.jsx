@@ -3,9 +3,10 @@ import React from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 export default function TodaysWorkout() {
-	const dailyWorkout = useSelector(store => store.dailyWorkout);
-	var dispatch = useDispatch();
-	const getWorkout = e => {
+	const dailyWorkout = useSelector(store => store.exercise);
+
+	const dispatch = useDispatch();
+	const getWorkout = () => {
 		dispatch({ Type: 'RANDOM_EXERCISE' });
 	};
 
@@ -16,7 +17,8 @@ export default function TodaysWorkout() {
 				Lorem Ipsum is simply dummy text of the printing and typesetting
 				industry.
 			</p>
-			<button> Get Random Workout </button>
+			<button onClick={getWorkout}> Get Random Workout </button>
+			{JSON.stringify(dailyWorkout)}
 		</div>
 	);
 }

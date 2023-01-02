@@ -1,4 +1,4 @@
-export default exerciseReducer = (state = {}, action) => {
+const exerciseReducer = (state = {}, action) => {
 	switch (action.type) {
 		case 'RANDOM_EXERCISE':
 			return action.payload;
@@ -8,3 +8,5 @@ export default exerciseReducer = (state = {}, action) => {
 			return state;
 	}
 };
+
+export default exerciseReducer;

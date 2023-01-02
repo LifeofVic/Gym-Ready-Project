@@ -5,12 +5,13 @@ import React from 'react';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function InfoPage() {
-  return (
-    <div className="container">
-      <p>Info Page</p>
-    </div>
-  );
+function TodaysWorkout() {
+	return (
+		<div className='container'>
+			<p>Todays Workout View</p>
+			<p>Will List all the exercise associated with todays day.</p>
+		</div>
+	);
 }
 
-export default InfoPage;
+export default TodaysWorkout;
