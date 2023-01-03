@@ -20,6 +20,7 @@ export default function TodaysWorkout() {
 				This component will display the exercise desired according to the id
 				number...
 			</p>
+			<img src={dailyWorkout.gif_url} />
 			<button onClick={getWorkout}> Get Random Workout </button>
 			{JSON.stringify(dailyWorkout)}
 		</div>

@@ -1,9 +1,7 @@
 import React from 'react';
 
-// This is one of our simplest components
-// It doesn't have local state
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is
+//TODO This will display the View page for the users workout for the day.
+//? Will have to insert workouts for each user inorder to display them onto the view page.
 
 function TodaysWorkout() {
 	return (
