@@ -27,6 +27,21 @@ router.get('/', (req, res) => {
 		});
 });
 
+router.get('/:musclegroup', (req, res) => {
+	const musclegroup = req.params.musclegroup;
+	console.log('Incoming data to be sent to DB: ', musclegroup);
+	const queryText = `SELECT * FROM "exercise" WHERE "muscle_group" = $1;`;
+	pool
+		.query(queryText, [musclegroup])
+		.then(result => {
+			res.send(result.rows);
+			console.log('Result.row is: ', result.rows);
+		})
+		.catch(error => {
+			console.log('Error in  Get /:musclegroup / exercise.router ', error);
+		});
+}); //End of Router.Get
+
 /**
  * POST route template
  */

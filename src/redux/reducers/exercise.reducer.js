@@ -1,6 +1,6 @@
 const exerciseReducer = (state = {}, action) => {
 	switch (action.type) {
-		case 'SET_RANDOM_EXERCISE':
+		case 'EXERCISE_BY_GROUP':
 			return action.payload;
 		case 'CLEAR_EXERCISE':
 			return {};

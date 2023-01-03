@@ -19,7 +19,7 @@ import TodaysWorkout from '../TodaysWorkout-View/TodaysWorkout';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
+import CreateWorkout from '../CreateWorkout-View/CreateWorkout';
 import './App.css';
 
 function App() {
@@ -63,6 +63,13 @@ function App() {
 						exact
 						path='/today'>
 						<TodaysWorkout />
+					</ProtectedRoute>
+
+					<ProtectedRoute
+						// logged in shows InfoPage else shows LoginPage
+						exact
+						path='/create-workout'>
+						<CreateWorkout />
 					</ProtectedRoute>
 
 					<Route exact path='/login'>

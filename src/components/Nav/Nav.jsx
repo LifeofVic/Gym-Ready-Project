@@ -32,6 +32,9 @@ function Nav() {
 							Today's Workout
 						</Link>
 
+						<Link className='navLink' to='/create-workout'>
+							Create Workout
+						</Link>
 						<LogOutButton className='navLink' />
 					</>
 				)}

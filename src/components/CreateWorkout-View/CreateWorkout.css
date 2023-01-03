@@ -1,0 +1,12 @@
+.filter-section {
+	margin: 25px;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+.exercise-detail{
+	margin: 25px;
+	height: 400px;
+	padding: 10px;
+	border: 1px solid black;
+}
