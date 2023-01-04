@@ -29,7 +29,10 @@ router.get('/', (req, res) => {
 
 router.get('/:musclegroup', (req, res) => {
 	const musclegroup = req.params.musclegroup;
-	console.log('Incoming data to be sent to DB: ', musclegroup);
+	console.log(
+		'Returning all exercise with the following muscle group: ',
+		musclegroup
+	);
 	const queryText = `SELECT * FROM "exercise" WHERE "muscle_group" = $1;`;
 	pool
 		.query(queryText, [musclegroup])

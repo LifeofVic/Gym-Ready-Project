@@ -2,6 +2,12 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import reduxSaga from 'redux-saga';
 import React from 'react';
+
+function* exerciseSaga() {
+	yield takeLatest('FETCH_RANDOM_EXERCISE', randomExercise);
+	yield takeLatest('EXERCISE_BY_GROUP', ExerciseByGroup);
+}
+
 function* randomExercise(action) {
 	console.log(
 		'Making a random exercise request to db to display onto dashboard'
@@ -17,12 +23,13 @@ function* randomExercise(action) {
 		);
 	}
 }
+
 //! This will receive the desired exercises by muscle group.
 function* ExerciseByGroup(action) {
 	console.log('In Exercise by group', action.type, action.payload);
 	try {
 		const exerciseByGroup = yield axios.get(`/exercise/${action.payload}`);
-		console.log('Exercise By Group is: ', exerciseByGroup);
+		console.log('Exercise By Group is: ', exerciseByGroup.data);
 		yield put({
 			type: 'SET_GROUPED_EXERCISE',
 			payload: exerciseByGroup.data,
@@ -30,11 +37,6 @@ function* ExerciseByGroup(action) {
 	} catch (error) {
 		console.log('Error in exercise.saga / ExerciseByGroup / ');
 	}
-}
-
-function* exerciseSaga() {
-	yield takeLatest('FETCH_RANDOM_EXERCISE', randomExercise);
-	yield takeLatest('EXERCISE_BY_GROUP', ExerciseByGroup);
 }
 
 export default exerciseSaga;

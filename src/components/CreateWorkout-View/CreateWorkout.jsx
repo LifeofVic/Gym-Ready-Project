@@ -2,7 +2,6 @@ import React from 'react';
 import '../CreateWorkout-View/CreateWorkout.css';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { number } from 'prop-types';
 
 export default function CreateWorkout() {
 	const GroupedExercise = useSelector(store => store.exercise);
@@ -37,43 +36,44 @@ export default function CreateWorkout() {
 				<input type='number' placeholder='# of sets'></input>
 			</div>
 			<div className='exercise-detail'>
-				{' '}
-				{JSON.stringify(GroupedExercise.data)}
+				{GroupedExercise.map(exercise => {
+					return <p> {exercise.exercise_name} </p>;
+				})}
 			</div>
 			<div className='day-section'>
-				<label class='switch'>
+				<label className='switch'>
 					<input type='checkbox' value='Sunday' />
-					<span class='slider round'>Sunday</span>
+					<span className='slider round'>Sunday</span>
 				</label>
 
-				<label class='switch'>
+				<label className='switch'>
 					<input type='checkbox' value='Monday' />
-					<span class='slider round'>Monday</span>
+					<span className='slider round'>Monday</span>
 				</label>
 
-				<label class='switch'>
+				<label className='switch'>
 					<input type='checkbox' value='Tuesday' />
-					<span class='slider round'>Tuesday</span>
+					<span className='slider round'>Tuesday</span>
 				</label>
 
-				<label class='switch'>
+				<label className='switch'>
 					<input type='checkbox' value='Wednesday' />
-					<span class='slider round'>Wednesday</span>
+					<span className='slider round'>Wednesday</span>
 				</label>
 
-				<label class='switch'>
+				<label className='switch'>
 					<input type='checkbox' value='Thursday' />
-					<span class='slider round'>Thursday</span>
+					<span className='slider round'>Thursday</span>
 				</label>
 
-				<label class='switch'>
+				<label className='switch'>
 					<input type='checkbox' value='Friday' />
-					<span class='slider round'>Friday</span>
+					<span className='slider round'>Friday</span>
 				</label>
 
-				<label class='switch'>
+				<label className='switch'>
 					<input type='checkbox' value='Saturday' />
-					<span class='slider round'>Saturday</span>
+					<span className='slider round'>Saturday</span>
 				</label>
 			</div>
 			<button className='submit-btn'> Add Exercise</button>
