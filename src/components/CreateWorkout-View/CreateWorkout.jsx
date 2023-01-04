@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../CreateWorkout-View/CreateWorkout.css';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -6,28 +6,32 @@ import { useSelector } from 'react-redux';
 export default function CreateWorkout() {
 	const GroupedExercise = useSelector(store => store.exercise);
 
+	const [SelectExercise, setSelectedExercise] = useState('');
+
 	const dispatch = useDispatch();
 
 	const CategoryExercise = e => {
 		console.log('Value is: ', e.target.value);
+
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
 	};
 
-	const SelectedExercise = e => {
-		console.log('Exercise Selected is: ', e.target.value);
+	const DisplayExercise = e => {
+		setSelectedExercise(e.target.value);
 	};
 
 	return (
 		<>
+			{/* <header className='Create-Workout-Header'>Create Your Workout</header> */}
 			<div className='filter-section'>
-				<select placeholder='Muscle Group' onChange={CategoryExercise}>
+				<select placeholder='Muscle-Group' onChange={CategoryExercise}>
 					<option>Muscle Group... </option>
 					<option value='chest'>Chest </option>
 					<option value='back'>Back </option>
 					<option value='cardio'>Cardio </option>
 					<option value='lower arms'>Lower Arms </option>
 					<option value='waist'>Waist </option>
-					<option value='shoulder'>Shoulder </option>
+					<option value='shoulders'>Shoulders </option>
 					<option value='lower legs'>Lower Legs </option>
 					<option value='neck'>Neck </option>
 					<option value='upper arms'>Upper Arms </option>
@@ -37,20 +41,25 @@ export default function CreateWorkout() {
 				<select
 					placeholder='Exercise'
 					className='exercise-list'
-					onChange={SelectedExercise}>
+					onChange={DisplayExercise}>
 					<option>exercise selection... </option>
 					{GroupedExercise.map(exercise => {
 						return (
-							<option key={exercise.id} value={exercise.exercise_name}>
-								{exercise.exercise_name}
-							</option>
+							<>
+								<option key={exercise.id} value={exercise.gif_url}>
+									{exercise.exercise_name} ID: {exercise.id}
+								</option>
+							</>
 						);
 					})}
 				</select>
 
 				<input type='number' placeholder='# of sets'></input>
 			</div>
-			<div className='exercise-detail'></div>
+			<div className='exercise-detail'>
+				{JSON.stringify(SelectExercise)}
+				<img src={SelectExercise} />
+			</div>
 			<div className='day-section'>
 				<label className='switch'>
 					<input type='checkbox' value='Sunday' />
@@ -102,3 +111,5 @@ export default function CreateWorkout() {
 					);
 				})} */
 }
+
+// const [selectedExercise, setSelectedExercise] = useState([]);
