@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 export default function CreateWorkout() {
 	const GroupedExercise = useSelector(store => store.exercise);
 
-	const [SelectExercise, setSelectedExercise] = useState('');
+	const [SelectExerciseGif, setSelectedExercise] = useState('');
 
 	const dispatch = useDispatch();
 
@@ -43,10 +43,10 @@ export default function CreateWorkout() {
 					className='exercise-list'
 					onChange={DisplayExercise}>
 					<option>exercise selection... </option>
-					{GroupedExercise.map(exercise => {
+					{GroupedExercise.map((exercise, index) => {
 						return (
 							<>
-								<option key={exercise.id} value={exercise.gif_url}>
+								<option key={index} value={exercise.gif_url}>
 									{exercise.exercise_name} ID: {exercise.id}
 								</option>
 							</>
@@ -57,8 +57,8 @@ export default function CreateWorkout() {
 				<input type='number' placeholder='# of sets'></input>
 			</div>
 			<div className='exercise-detail'>
-				{JSON.stringify(SelectExercise)}
-				<img src={SelectExercise} />
+				{/* {JSON.stringify(SelectExercise)} */}
+				<img src={SelectExerciseGif} />
 			</div>
 			<div className='day-section'>
 				<label className='switch'>
