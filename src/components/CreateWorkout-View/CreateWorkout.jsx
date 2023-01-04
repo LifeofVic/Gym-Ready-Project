@@ -37,7 +37,12 @@ export default function CreateWorkout() {
 			</div>
 			<div className='exercise-detail'>
 				{GroupedExercise.map(exercise => {
-					return <p> {exercise.exercise_name} </p>;
+					return (
+						<>
+							<p> {exercise.exercise_name} </p>
+							<img src={exercise.gif_url} />
+						</>
+					);
 				})}
 			</div>
 			<div className='day-section'>
