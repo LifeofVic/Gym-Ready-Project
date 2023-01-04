@@ -7,15 +7,20 @@ export default function CreateWorkout() {
 	const GroupedExercise = useSelector(store => store.exercise);
 
 	const dispatch = useDispatch();
+
 	const CategoryExercise = e => {
 		console.log('Value is: ', e.target.value);
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
 	};
 
+	const SelectedExercise = e => {
+		console.log('Exercise Selected is: ', e.target.value);
+	};
+
 	return (
 		<>
-			<div className='filter-section' onChange={CategoryExercise}>
-				<select placeholder='Muscle Group'>
+			<div className='filter-section'>
+				<select placeholder='Muscle Group' onChange={CategoryExercise}>
 					<option>Muscle Group... </option>
 					<option value='chest'>Chest </option>
 					<option value='back'>Back </option>
@@ -29,22 +34,23 @@ export default function CreateWorkout() {
 					<option value='upper legs'>Upper Legs </option>
 				</select>
 
-				<select placeholder='Exercise' className='exercise-list'>
+				<select
+					placeholder='Exercise'
+					className='exercise-list'
+					onChange={SelectedExercise}>
 					<option>exercise selection... </option>
+					{GroupedExercise.map(exercise => {
+						return (
+							<option key={exercise.id} value={exercise.exercise_name}>
+								{exercise.exercise_name}
+							</option>
+						);
+					})}
 				</select>
 
 				<input type='number' placeholder='# of sets'></input>
 			</div>
-			<div className='exercise-detail'>
-				{GroupedExercise.map(exercise => {
-					return (
-						<>
-							<p> {exercise.exercise_name} </p>
-							<img src={exercise.gif_url} />
-						</>
-					);
-				})}
-			</div>
+			<div className='exercise-detail'></div>
 			<div className='day-section'>
 				<label className='switch'>
 					<input type='checkbox' value='Sunday' />
@@ -84,4 +90,15 @@ export default function CreateWorkout() {
 			<button className='submit-btn'> Add Exercise</button>
 		</>
 	);
+}
+
+//! This will allow the exercises name to be displayed onto the DOM.
+{
+	/* {GroupedExercise.map(exercise => {
+					return (
+						<>
+							<p> {exercise.exercise_name} </p>
+						</>
+					);
+				})} */
 }
