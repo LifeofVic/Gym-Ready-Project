@@ -6,6 +6,7 @@ import React from 'react';
 function* exerciseSaga() {
 	yield takeLatest('FETCH_RANDOM_EXERCISE', randomExercise);
 	yield takeLatest('EXERCISE_BY_GROUP', ExerciseByGroup);
+	yield takeLatest('DISPLAY_EXERCISE', ExerciseDisplay);
 }
 
 function* randomExercise(action) {
@@ -26,7 +27,7 @@ function* randomExercise(action) {
 
 //! This will receive the desired exercises by muscle group.
 function* ExerciseByGroup(action) {
-	console.log('In Exercise by group', action.type, action.payload);
+	console.log('In Exercise by group', '1:', action.type, '2:', action.payload);
 	try {
 		const exerciseByGroup = yield axios.get(`/exercise/${action.payload}`);
 		console.log('Exercise By Group is: ', exerciseByGroup.data);
@@ -36,6 +37,20 @@ function* ExerciseByGroup(action) {
 		});
 	} catch (error) {
 		console.log('Error in exercise.saga / ExerciseByGroup / ');
+	}
+}
+
+function* ExerciseDisplay(action) {
+	console.log('In ExerciseDisplay Saga, ', action.type, action.payload);
+	try {
+		const ExerciseGif = yield axios.get(`/:exerciseGif/${action.payload}`);
+		console.log('Exercise object from DB: ', ExerciseGif.data);
+		yield put({
+			type: 'SET_SELECTED_EXERCISE',
+			payload: ExerciseGif.data,
+		});
+	} catch (err) {
+		console.log('Error in exercise.saga / ExerciseDisplay');
 	}
 }
 

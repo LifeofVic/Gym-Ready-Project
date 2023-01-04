@@ -42,8 +42,30 @@ router.get('/:musclegroup', (req, res) => {
 		})
 		.catch(error => {
 			console.log('Error in  Get /:musclegroup / exercise.router ', error);
+			res.sendStatus(500);
 		});
 }); //End of Router.Get
+
+// router.get('/:exerciseName', (req, res) => {
+// 	const exerciseName = req.params.exerciseName;
+// 	console.log(
+// 		'Going to look for the object containing the property [exercise_name ] = ',
+// 		exerciseName
+// 	);
+// 	const queryText = `SELECT * FROM "exercise" WHERE "exercise_name" = $1;`;
+
+// 	pool
+// 		.query(queryText, [exerciseName])
+// 		.then(result => {
+// 			res.send(result.rows);
+// 			console.log('Result rows: [exercise object]', result.rows);
+
+// 		})
+// 		.catch(error => {
+// 			console.log('Error in GET /:exerciseGif / exercise.Router', error);
+// 			res.sendStatus(500);
+// 		});
+// });
 
 /**
  * POST route template
