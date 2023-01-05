@@ -8,6 +8,9 @@
 --     "username" VARCHAR (80) UNIQUE NOT NULL,
 --     "password" VARCHAR (1000) NOT NULL
 -- );
+
+CREATE DATABASE gym_ready_db;
+
 CREATE TABLE set (
 	"id" 						integer PRIMARY KEY UNIQUE,
 	"session_id" 		integer NOT NULL,
@@ -29,26 +32,30 @@ CREATE TABLE session (
 	"set_id" 					integer REFERENCES set
 );
 
-CREATE TABLE schedule 
-	"id" SERIAL PRIMARY KEY,
+CREATE TABLE schedule (
+"id" SERIAL PRIMARY KEY,
 	"Monday"    integer REFERENCES "session",
 	"Tuesday"   integer REFERENCES "session",
 	"Wednesday" integer REFERENCES "session",
 	"Thursday"  integer REFERENCES "session",
 	"Friday"    integer REFERENCES "session",
-	"Saturday"  integer REFERENCES "session";
+	"Saturday"  integer REFERENCES "session"
+);
+	
 
 
-CREATE TABLE "user" 
+CREATE TABLE "user" (
 	"id" 						SERIAL PRIMARY KEY,
 	"password" 			varchar(255) NOT NULL DEFAULT 'NOT NULL',
 	"username" 			varchar(255) NOT NULL UNIQUE,
 	"access_level"	integer NOT NULL DEFAULT '0',
-	"schedule_id" 	integer REFERENCES schedule;
+	"schedule_id" 	integer REFERENCES schedule
+);
+
 
 --CREATING THE EXERCISES 
 INSERT INTO exercise(muscle_group,gif_url,id,exercise_name,muscle_target) VALUES
- ('waist','http://d205bpvrqc9yn1.cloudfront.net/0001.gif',0001,'3/4 sit-up','abs')
+('waist','http://d205bpvrqc9yn1.cloudfront.net/0001.gif',0001,'3/4 sit-up','abs')
 ,('waist','http://d205bpvrqc9yn1.cloudfront.net/0002.gif',0002,'45° side bend','abs')
 ,('waist','http://d205bpvrqc9yn1.cloudfront.net/0003.gif',0003,'air bike','abs')
 ,('waist','http://d205bpvrqc9yn1.cloudfront.net/0006.gif',0006,'alternate heel touchers','abs')
