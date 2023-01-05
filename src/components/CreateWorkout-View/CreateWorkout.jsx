@@ -10,9 +10,9 @@ export default function CreateWorkout() {
 	const GroupedExercise = useSelector(store => store.exercise);
 
 	//Will store the a string used for the animation.
-	const [ExerciseGif, setExerciseGif] = useState('');
+	const [ExerciseGif, setExerciseGif] = useState();
 	// Stores the number value the selected Exercise from the drop down list of exercise.
-	const [ExerciseId, setExerciseId] = useState('');
+	const [ExerciseId, setExerciseId] = useState(0);
 	// Stores the  string value from the toggled day selected by the user.
 	const [SelectDay, setToggledDay] = useState('');
 
@@ -23,11 +23,15 @@ export default function CreateWorkout() {
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
 	};
 	//This will run where the event handler will set those values into the corresponding local state to be used in the [AddExercise] once the 'Add Exercise' button is clicked on.
-	const SetValues = (event, id) => {
-		setExerciseId(id);
-		setExerciseGif(event.target.value);
-		console.log('Selected Gif is: ', event.target.value);
-		console.log('Selected Exercise ID is: ', event.target.id);
+	const SetValues = event => {
+		setExerciseId(event.target.value);
+		console.log('Selected Exercise ID is: ', event.target.value);
+
+		let findGif = GroupedExercise.filter(
+			object => object.id == event.target.value
+		);
+		console.log('Find is: ', find);
+		setExerciseGif(findGif[0].gif_url);
 	};
 
 	//This event listener will run when the user selects the desired day in the toggle options of the view page
@@ -78,9 +82,10 @@ export default function CreateWorkout() {
 							<>
 								<option
 									key={index}
-									value={exercise.gif_url}
+									value={exercise.id}
 									id={exercise.id}
-									onChange={event => SetValues(event, exercise.id)}>
+									//									onChange={event => SetValues(event, exercise.id)}
+								>
 									{exercise.exercise_name} ID: {exercise.id}
 								</option>
 							</>
