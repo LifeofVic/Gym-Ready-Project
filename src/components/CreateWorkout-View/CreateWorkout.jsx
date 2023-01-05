@@ -8,8 +8,10 @@ export default function CreateWorkout() {
 	const GroupedExercise = useSelector(store => store.exercise);
 
 	const [SelectExerciseGif, setSelectedExercise] = useState('');
+	const [ToggleDay, setToggledDay] = useState('');
 
 	const CategoryExercise = e => {
+		e.preventDefault();
 		console.log('Value is: ', e.target.value);
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
 	};
@@ -17,6 +19,14 @@ export default function CreateWorkout() {
 	const DisplayExercise = e => {
 		setSelectedExercise(e.target.value);
 		console.log('Selected Gif is: ', SelectExerciseGif);
+		e.preventDefault();
+	};
+
+	const DaySelected = e => {
+		setToggledDay(e.target.value);
+		console.log('Day Selected is: ', ToggleDay);
+		e.preventDefault();
+		dispatch({ type: 'SET_DAY_SELECTED', payload: ToggleDay });
 	};
 
 	const AddExercise = e => {};
@@ -63,37 +73,37 @@ export default function CreateWorkout() {
 			</div>
 			<div className='day-section'>
 				<label className='switch'>
-					<input type='checkbox' value='Sunday' />
+					<input type='checkbox' value='Sunday' onChange={DaySelected} />
 					<span className='slider round'>Sunday</span>
 				</label>
 
 				<label className='switch'>
-					<input type='checkbox' value='Monday' />
+					<input type='checkbox' value='Monday' onChange={DaySelected} />
 					<span className='slider round'>Monday</span>
 				</label>
 
 				<label className='switch'>
-					<input type='checkbox' value='Tuesday' />
+					<input type='checkbox' value='Tuesday' onChange={DaySelected} />
 					<span className='slider round'>Tuesday</span>
 				</label>
 
 				<label className='switch'>
-					<input type='checkbox' value='Wednesday' />
+					<input type='checkbox' value='Wednesday' onChange={DaySelected} />
 					<span className='slider round'>Wednesday</span>
 				</label>
 
 				<label className='switch'>
-					<input type='checkbox' value='Thursday' />
+					<input type='checkbox' value='Thursday' onChange={DaySelected} />
 					<span className='slider round'>Thursday</span>
 				</label>
 
 				<label className='switch'>
-					<input type='checkbox' value='Friday' />
+					<input type='checkbox' value='Friday' onChange={DaySelected} />
 					<span className='slider round'>Friday</span>
 				</label>
 
 				<label className='switch'>
-					<input type='checkbox' value='Saturday' />
+					<input type='checkbox' value='Saturday' onChange={DaySelected} />
 					<span className='slider round'>Saturday</span>
 				</label>
 			</div>
@@ -104,7 +114,7 @@ export default function CreateWorkout() {
 	);
 }
 
-//! This will allow the exercises name to be displayed onto the DOM.
+//! This will allow the exercises names to be displayed onto the DOM in the dropdown filter.
 {
 	/* {GroupedExercise.map(exercise => {
 					return (
@@ -114,5 +124,3 @@ export default function CreateWorkout() {
 					);
 				})} */
 }
-
-// const [selectedExercise, setSelectedExercise] = useState([]);

@@ -1,7 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import reduxSaga from 'redux-saga';
-import React from 'react';
 
 function* exerciseSaga() {
 	yield takeLatest('FETCH_RANDOM_EXERCISE', randomExercise);
