@@ -29,23 +29,22 @@ CREATE TABLE session (
 	"set_id" 					integer REFERENCES set
 );
 
-CREATE TABLE schedule (
-	"id" 					SERIAL PRIMARY KEY,
-	"day_name" 		varchar(20),
-	"session_id" 	integer REFERENCES "session"
-	);
---ADDING THE SET DAYS OF THE WEEK.
-INSERT INTO schedule ("day_name")
-VALUES ('Sunday'), ('Monday'), ('Tuesday'), ('Wednesday'), ('Thursday'), ('Friday'), ('Saturday');
+CREATE TABLE schedule 
+	"id" SERIAL PRIMARY KEY,
+	"Monday"    integer REFERENCES "session",
+	"Tuesday"   integer REFERENCES "session",
+	"Wednesday" integer REFERENCES "session",
+	"Thursday"  integer REFERENCES "session",
+	"Friday"    integer REFERENCES "session",
+	"Saturday"  integer REFERENCES "session";
 
 
-CREATE TABLE "user" (
+CREATE TABLE "user" 
 	"id" 						SERIAL PRIMARY KEY,
 	"password" 			varchar(255) NOT NULL DEFAULT 'NOT NULL',
 	"username" 			varchar(255) NOT NULL UNIQUE,
 	"access_level"	integer NOT NULL DEFAULT '0',
-	"schedule_id" 	integer REFERENCES schedule
-);
+	"schedule_id" 	integer REFERENCES schedule;
 
 --CREATING THE EXERCISES 
 INSERT INTO exercise(muscle_group,gif_url,id,exercise_name,muscle_target) VALUES

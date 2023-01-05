@@ -4,21 +4,22 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 export default function CreateWorkout() {
+	const dispatch = useDispatch();
 	const GroupedExercise = useSelector(store => store.exercise);
 
 	const [SelectExerciseGif, setSelectedExercise] = useState('');
 
-	const dispatch = useDispatch();
-
 	const CategoryExercise = e => {
 		console.log('Value is: ', e.target.value);
-
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
 	};
 
 	const DisplayExercise = e => {
 		setSelectedExercise(e.target.value);
+		console.log('Selected Gif is: ', SelectExerciseGif);
 	};
+
+	const AddExercise = e => {};
 
 	return (
 		<>
@@ -57,7 +58,7 @@ export default function CreateWorkout() {
 				<input type='number' placeholder='# of sets'></input>
 			</div>
 			<div className='exercise-detail'>
-				{/* {JSON.stringify(SelectExercise)} */}
+				{/* {JSON.stringify(SelectExerciseGif.gif_url)} */}
 				<img src={SelectExerciseGif} />
 			</div>
 			<div className='day-section'>
@@ -96,7 +97,9 @@ export default function CreateWorkout() {
 					<span className='slider round'>Saturday</span>
 				</label>
 			</div>
-			<button className='submit-btn'> Add Exercise</button>
+			<button className='submit-btn' onClick={AddExercise}>
+				Add Exercise
+			</button>
 		</>
 	);
 }

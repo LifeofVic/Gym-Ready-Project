@@ -17,12 +17,10 @@ export default function TodaysWorkout() {
 		<div className='dailyWorkoutContainer'>
 			<h3>Daily Workout Component </h3>
 			<p>
-				This component will display the exercise desired according to the id
-				number...
+				This component will display the workout that is assigned for the day.
 			</p>
 			<img src={dailyWorkout.gif_url} />
 			<button onClick={getWorkout}> Get Random Workout </button>
-			{JSON.stringify(dailyWorkout)}
 		</div>
 	);
 }
