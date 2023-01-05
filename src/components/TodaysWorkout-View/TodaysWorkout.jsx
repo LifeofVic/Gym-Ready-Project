@@ -3,12 +3,13 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 //TODO This will display the View page for the users workout for the day.
-//? Will have to insert workouts for each user inorder to display them onto the view page.
+//? Will have to insert workouts for each user in order to display them onto the view page.
 
 export default function TodaysWorkout() {
 	const dispatch = useDispatch();
 
 	const fetchWorkout = () => {
+		console.log('FetchWorkout event listener is working. ');
 		dispatch({ type: 'FETCH_ROUTINE' });
 	};
 
@@ -21,6 +22,9 @@ export default function TodaysWorkout() {
 
 			<div>
 				<button onClick={fetchWorkout}> Fetch User workout</button>
+			</div>
+			<div>
+				This will display the users exercise for a certain day of the week.
 			</div>
 		</>
 	);

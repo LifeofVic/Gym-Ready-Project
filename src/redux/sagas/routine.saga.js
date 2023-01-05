@@ -22,10 +22,12 @@ function* RoutineCreation(action) {
 }
 
 function* FetchWorkout(action) {
-	console.log('In FetchWorkout Saga / routine.saga ');
+	console.log('action: ', action.type);
+	console.log('FetchWorkout Generator is working! ');
 	try {
-		const workoutFetched = yield axios.get('/workout');
-		yield put({ type: 'SET_VIEW_WORKOUT', payload: workoutFetched });
+		const workoutFetched = yield axios.get('/todaysworkout');
+		console.log('WorkoutFetched from router is: ', workoutFetched);
+		yield put({ type: 'SET_WORKOUT_TO_DISPLAY', payload: workoutFetched.data });
 	} catch (error) {
 		console.log('Error in FetchWorkout / Routine.Saga', error);
 	}

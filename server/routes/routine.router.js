@@ -3,20 +3,21 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.get('/workout', (req, res) => {
+router.get('/todaysworkout', (req, res) => {
+	console.log('We are in the router.get /todaysworkout');
+	const userId = req.body.user.id;
 	const queryText = `SELECT * FROM "user" 
 LEFT JOIN "schedule" ON "user".schedule_id = "schedule".id
 LEFT JOIN "session" ON "schedule".id = "session".id
 LEFT JOIN "exercise" ON "exercise_id" = "exercise".id
 LEFT JOIN "set" ON "set_id" = "set".id
 WHERE "user".id = 1;`;
-	console.log('req is: ', req.body);
+	console.log('req is: ', userId);
 	pool
 		.query(queryText)
 		.then(result => {
 			res.send(result.rows);
 			console.log('result.rows from getting all user row data: ', result.rows);
-			res.sendStatus(200);
 		})
 		.catch(error => {
 			console.log('error is routine.router / router.get', error);
@@ -33,7 +34,7 @@ router.post('/workout', async (req, res) => {
 	const ExerciseId = req.body.exerciseId;
 
 	var storedValue = [];
-
+	//This will temporarily store the returning id value which will be used later on.
 	function setValue(returnValue) {
 		returnValue = this.returnValue;
 		console.log('Returning ID is stored here: ', storedValue);
@@ -41,6 +42,7 @@ router.post('/workout', async (req, res) => {
 	const connection = await pool.connect();
 	try {
 		await connection.query('BEGIN;');
+		//This will insert the exercise id into the SESSION table creating a row that will then be assigned to a users schedule table.
 		const queryText = `INSERT INTO "session" ("exercise_id") VALUES ($1) RETURNING id;`;
 
 		await connection.query(queryText, [ExerciseId], function (err, returnId) {

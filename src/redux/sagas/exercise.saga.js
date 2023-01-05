@@ -7,22 +7,6 @@ function* exerciseSaga() {
 	//yield takeLatest('DISPLAY_EXERCISE', ExerciseDisplay); //! not used
 }
 
-function* randomExercise(action) {
-	console.log(
-		'Making a random exercise request to db to display onto dashboard'
-	);
-	try {
-		const randomExercise = yield axios.get('/exercise');
-		console.log('Random Exercise is: ', randomExercise);
-		yield put({ type: 'SET_RANDOM_EXERCISE', payload: randomExercise.data });
-	} catch (error) {
-		console.log(
-			'Error in fetching from server random exercises using exercise.saga',
-			error
-		);
-	}
-}
-
 //? This will receive the desired exercises by muscle group.
 // Sending the action.payload that contains the string of the muscle_group selected by the user. assigning that to exerciseByGroup
 // exerciseByGroup will then be sent to the reducer by ( yield put ) where it will be set to be used globally.
@@ -37,6 +21,22 @@ function* ExerciseByGroup(action) {
 		});
 	} catch (error) {
 		console.log('Error in exercise.saga / ExerciseByGroup / ');
+	}
+}
+
+function* randomExercise(action) {
+	console.log(
+		'Making a random exercise request to db to display onto dashboard'
+	);
+	try {
+		const randomExercise = yield axios.get('/exercise');
+		console.log('Random Exercise is: ', randomExercise);
+		yield put({ type: 'SET_RANDOM_EXERCISE', payload: randomExercise.data });
+	} catch (error) {
+		console.log(
+			'Error in fetching from server random exercises using exercise.saga',
+			error
+		);
 	}
 }
 
