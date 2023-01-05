@@ -8,6 +8,7 @@ export default function CreateWorkout() {
 	const GroupedExercise = useSelector(store => store.exercise);
 
 	const [SelectExerciseGif, setSelectedExercise] = useState('');
+	const [ExerciseId, setExerciseId] = useState('');
 	const [ToggleDay, setToggledDay] = useState('');
 
 	const CategoryExercise = e => {
@@ -16,20 +17,26 @@ export default function CreateWorkout() {
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
 	};
 
-	const DisplayExercise = e => {
-		setSelectedExercise(e.target.value);
-		console.log('Selected Gif is: ', SelectExerciseGif);
-		e.preventDefault();
+	const DisplayExercise = (event, id) => {
+		setExerciseId(id);
+		setSelectedExercise(event.target.value);
+
+		console.log('Selected Gif is: ', event.target.value);
+		console.log('Selected Exercise ID is: ', event.target.id);
 	};
 
 	const DaySelected = e => {
 		setToggledDay(e.target.value);
 		console.log('Day Selected is: ', ToggleDay);
 		e.preventDefault();
-		dispatch({ type: 'SET_DAY_SELECTED', payload: ToggleDay });
 	};
 
-	const AddExercise = e => {};
+	const AddExercise = () => {
+		dispatch({
+			type: 'SET_ROUTINE',
+			payload: { day: ToggleDay, exerciseId: ExerciseId },
+		});
+	};
 
 	return (
 		<>
@@ -57,7 +64,11 @@ export default function CreateWorkout() {
 					{GroupedExercise.map((exercise, index) => {
 						return (
 							<>
-								<option key={index} value={exercise.gif_url}>
+								<option
+									key={index}
+									value={exercise.gif_url}
+									id={exercise.id}
+									onChange={event => DisplayExercise(event, exercise.id)}>
 									{exercise.exercise_name} ID: {exercise.id}
 								</option>
 							</>
@@ -67,8 +78,8 @@ export default function CreateWorkout() {
 
 				<input type='number' placeholder='# of sets'></input>
 			</div>
+			{JSON.stringify(ExerciseId)}
 			<div className='exercise-detail'>
-				{/* {JSON.stringify(SelectExerciseGif.gif_url)} */}
 				<img src={SelectExerciseGif} />
 			</div>
 			<div className='day-section'>

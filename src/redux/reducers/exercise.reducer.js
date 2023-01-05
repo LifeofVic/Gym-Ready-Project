@@ -5,7 +5,7 @@ const exerciseGroup = (state = [], action) => {
 		case 'SET_GROUPED_EXERCISE':
 			console.log('Exercise reducer: ', action.payload);
 			return action.payload;
-		case 'CLEAR_EXERCISE':
+		case 'ADD_EXERCISE':
 			return [];
 		default:
 			return state;
