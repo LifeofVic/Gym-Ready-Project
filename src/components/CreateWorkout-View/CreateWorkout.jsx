@@ -7,11 +7,11 @@ export default function CreateWorkout() {
 	const dispatch = useDispatch();
 	const GroupedExercise = useSelector(store => store.exercise);
 
-	const [SelectExerciseGif, setSelectedExercise] = useState('');
+	const [ExerciseGif, setExerciseGif] = useState(''); //Will
 	const [ExerciseId, setExerciseId] = useState('');
-	const [ToggleDay, setToggledDay] = useState('');
+	const [SelectDay, setToggledDay] = useState('');
 
-	const CategoryExercise = e => {
+	const ExerciseByGroup = e => {
 		e.preventDefault();
 		console.log('Value is: ', e.target.value);
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
@@ -19,7 +19,7 @@ export default function CreateWorkout() {
 
 	const DisplayExercise = (event, id) => {
 		setExerciseId(id);
-		setSelectedExercise(event.target.value);
+		setExerciseGif(event.target.value);
 
 		console.log('Selected Gif is: ', event.target.value);
 		console.log('Selected Exercise ID is: ', event.target.id);
@@ -27,14 +27,14 @@ export default function CreateWorkout() {
 
 	const DaySelected = e => {
 		setToggledDay(e.target.value);
-		console.log('Day Selected is: ', ToggleDay);
+		console.log('Day Selected is: ', DaySelected);
 		e.preventDefault();
 	};
 
 	const AddExercise = () => {
 		dispatch({
 			type: 'SET_ROUTINE',
-			payload: { day: ToggleDay, exerciseId: ExerciseId },
+			payload: { day: SelectDay, exerciseId: ExerciseId },
 		});
 	};
 
@@ -42,7 +42,7 @@ export default function CreateWorkout() {
 		<>
 			{/* <header className='Create-Workout-Header'>Create Your Workout</header> */}
 			<div className='filter-section'>
-				<select placeholder='Muscle-Group' onChange={CategoryExercise}>
+				<select placeholder='Muscle-Group' onChange={ExerciseByGroup}>
 					<option>Muscle Group... </option>
 					<option value='chest'>Chest </option>
 					<option value='back'>Back </option>
@@ -80,7 +80,7 @@ export default function CreateWorkout() {
 			</div>
 			{JSON.stringify(ExerciseId)}
 			<div className='exercise-detail'>
-				<img src={SelectExerciseGif} />
+				<img src={ExerciseGif} />
 			</div>
 			<div className='day-section'>
 				<label className='switch'>
