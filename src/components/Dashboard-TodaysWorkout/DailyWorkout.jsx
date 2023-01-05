@@ -2,15 +2,16 @@ import '../Dashboard-TodaysWorkout/DailyWorkout.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 export default function TodaysWorkout() {
 	const dailyWorkout = useSelector(store => store.exercise);
-	const [newExercise, setExercise] = useState([]);
 
+	const history = useHistory();
 	const dispatch = useDispatch();
 
-	const getWorkout = () => {
-		console.log('Clicked on Random Exercise Button');
-		dispatch({ type: 'FETCH_RANDOM_EXERCISE' });
+	const WorkoutView = () => {
+		console.log('Clicked on WorkoutView');
+		history.push('/today');
 	};
 
 	return (
@@ -20,7 +21,7 @@ export default function TodaysWorkout() {
 				This component will display the workout that is assigned for the day.
 			</p>
 			<img src={dailyWorkout.gif_url} />
-			<button onClick={getWorkout}> Get Random Workout </button>
+			<button onClick={WorkoutView}> Go To Daily Workout View </button>
 		</div>
 	);
 }

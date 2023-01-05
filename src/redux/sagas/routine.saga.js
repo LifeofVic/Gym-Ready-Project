@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function* routineSaga() {
 	yield takeLatest('SET_ROUTINE', RoutineCreation);
+	yield takeLatest('FETCH_ROUTINE', FetchWorkout);
 }
 
 function* RoutineCreation(action) {
@@ -17,6 +18,16 @@ function* RoutineCreation(action) {
 		yield put({ type: 'SET_WORKOUT_ROUTINE', payload: createWorkout });
 	} catch (error) {
 		console.log('Error in RoutineCreation / Routine.Saga', error);
+	}
+}
+
+function* FetchWorkout(action) {
+	console.log('In FetchWorkout Saga / routine.saga ');
+	try {
+		const workoutFetched = yield axios.get('/workout');
+		yield put({ type: 'SET_VIEW_WORKOUT', payload: workoutFetched });
+	} catch (error) {
+		console.log('Error in FetchWorkout / Routine.Saga', error);
 	}
 }
 
