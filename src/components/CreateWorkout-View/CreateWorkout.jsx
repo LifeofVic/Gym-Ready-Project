@@ -7,30 +7,40 @@ export default function CreateWorkout() {
 	const dispatch = useDispatch();
 	const GroupedExercise = useSelector(store => store.exercise);
 
-	const [ExerciseGif, setExerciseGif] = useState(''); //Will
+	//Will store the a string used for the animation.
+	const [ExerciseGif, setExerciseGif] = useState('');
+	// Stores the number value the selected Exercise from the drop down list of exercise.
 	const [ExerciseId, setExerciseId] = useState('');
+	// Stores the  string value from the toggled day selected by the user.
 	const [SelectDay, setToggledDay] = useState('');
 
+	// This will send the muscle_group value of data type (string) to the exercise.Saga and set result.row to the [store.exercise] where all the exercises with that muscle_group will store in.   GroupedExercise.
 	const ExerciseByGroup = e => {
 		e.preventDefault();
 		console.log('Value is: ', e.target.value);
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
 	};
-
-	const DisplayExercise = (event, id) => {
+	//This will run where the event handler will set those values into the corresponding local state to be used in the [AddExercise] once the 'Add Exercise' button is clicked on.
+	const SetValues = (event, id) => {
 		setExerciseId(id);
 		setExerciseGif(event.target.value);
-
 		console.log('Selected Gif is: ', event.target.value);
 		console.log('Selected Exercise ID is: ', event.target.id);
 	};
 
+	//This event listener will run when the user selects the desired day in the toggle options of the view page
+	//and store that value into the corresponding local state.
 	const DaySelected = e => {
 		setToggledDay(e.target.value);
 		console.log('Day Selected is: ', DaySelected);
 		e.preventDefault();
 	};
 
+	//Once all the values have been saved to the proper variable,
+	//This will send:
+	// day: 'Monday'    - Day selected.
+	// exerciseId: 22   - value corresponding to the exercise's id that will be use to referenced
+	//											to the TABLE 'exercise'.
 	const AddExercise = () => {
 		dispatch({
 			type: 'SET_ROUTINE',
@@ -59,7 +69,7 @@ export default function CreateWorkout() {
 				<select
 					placeholder='Exercise'
 					className='exercise-list'
-					onChange={DisplayExercise}>
+					onChange={SetValues}>
 					<option>exercise selection... </option>
 					{GroupedExercise.map((exercise, index) => {
 						return (
@@ -68,7 +78,7 @@ export default function CreateWorkout() {
 									key={index}
 									value={exercise.gif_url}
 									id={exercise.id}
-									onChange={event => DisplayExercise(event, exercise.id)}>
+									onChange={event => SetValues(event, exercise.id)}>
 									{exercise.exercise_name} ID: {exercise.id}
 								</option>
 							</>
