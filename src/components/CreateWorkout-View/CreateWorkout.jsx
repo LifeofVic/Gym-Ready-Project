@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 
 export default function CreateWorkout() {
 	const dispatch = useDispatch();
+	//This uses global state to bring in the array of objects with the same muscle_group which each object will contain:
+	// id / muscle_group / gif_url / exercise_name / muscle_target
 	const GroupedExercise = useSelector(store => store.exercise);
 
 	//Will store the a string used for the animation.
