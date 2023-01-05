@@ -34,7 +34,7 @@ export default function CreateWorkout() {
 	//and store that value into the corresponding local state.
 	const DaySelected = e => {
 		setToggledDay(e.target.value);
-		console.log('Day Selected is: ', DaySelected);
+		console.log('Day Selected is: ', SelectDay);
 		e.preventDefault();
 	};
 
@@ -90,7 +90,6 @@ export default function CreateWorkout() {
 
 				<input type='number' placeholder='# of sets'></input>
 			</div>
-			{JSON.stringify(ExerciseId)}
 			<div className='exercise-detail'>
 				<img src={ExerciseGif} />
 			</div>
