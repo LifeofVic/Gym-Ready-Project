@@ -8,7 +8,9 @@ router.get('/:userId', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-	//This will send the exercise parametes to the TABLE favorites and assign each value accordingly
+	//This will send the exercise parameter to the TABLE favorites and assign each value accordingly.
+	let newExercise = req.body;
+	const sqlText = `INSERT INTO favorite ()`;
 });
 
 module.exports = router;

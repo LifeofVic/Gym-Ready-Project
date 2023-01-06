@@ -11,6 +11,38 @@
 
 CREATE DATABASE gym_ready_db;
 
+
+CREATE TABLE exercise(
+	"id"            INTEGER  NOT NULL PRIMARY KEY,
+	"muscle_group"  VARCHAR(10) NOT NULL,
+	"gif_url"       VARCHAR(45) NOT NULL,
+	"exercise_name" VARCHAR(67) NOT NULL,
+	"muscle_target" VARCHAR(21) NOT NULL
+);
+
+
+CREATE TABLE "user" (
+	"id" SERIAL PRIMARY KEY,
+	"password" varchar(255) NOT NULL DEFAULT 'NOT NULL',
+	"username" varchar(255) NOT NULL UNIQUE,
+	"access_level" integer NOT NULL DEFAULT '0'
+);
+
+CREATE TABLE "favorites"(
+	"id" SERIAL PRIMARY KEY,
+	"user_id" integer REFERENCES "user"(id),
+	"exercise_id" integer REFERENCES exercise(id)
+);
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
 CREATE TABLE set (
 	"id" 						integer PRIMARY KEY UNIQUE,
 	"session_id" 		integer NOT NULL,
