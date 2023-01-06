@@ -4,9 +4,8 @@ import { useState } from 'react';
 
 function* favoriteSaga() {
 	yield takeLatest('SET_FAVORITE', setFavorite);
-	yield takeLatest('FETCH_FAVORITE', setFavorite);
+	yield takeLatest('FETCH_FAVORITE', getFavorite);
 }
-
 //This will send the object of the entire exercise the user chooses to save to their favorite table.
 function* setFavorite(action) {
 	console.log('In FavoriteSaga / setFunction generator', action.payload);
@@ -21,7 +20,14 @@ function* setFavorite(action) {
 }
 
 function* getFavorite(action) {
-	console.log('In Favorite.Saga / getFavorite Generator', action);
+	console.log('In Favorite.Saga / getFavorite Generator', action.payload.user);
+	try {
+		const favorites = yield axios.get(`/favorite/${action.payload.user}`);
+		console.log('Axios.get results: ', favorites);
+		yield put({ type: 'SET_FAVORITE_LIST', payload: favorites.data });
+	} catch (error) {
+		console.log('Error in favorite.saga / getFavorite generator', error);
+	}
 }
 
 export default favoriteSaga;

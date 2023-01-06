@@ -13,7 +13,7 @@ export default function ViewFavorite() {
 
 	const dispatch = useDispatch();
 
-	const fetchWorkout = () => {
+	const fetchFavorites = () => {
 		console.log('FetchWorkout event listener is working. ');
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
@@ -26,7 +26,7 @@ export default function ViewFavorite() {
 			</div>
 
 			<div>
-				<button onClick={fetchWorkout}> Fetch User workout</button>
+				<button onClick={fetchFavorites}> Fetch User workout</button>
 			</div>
 			<div className='exercise-content'></div>
 		</>
