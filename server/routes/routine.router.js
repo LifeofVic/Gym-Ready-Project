@@ -25,7 +25,7 @@ WHERE "user".id = $1;`;
 		});
 });
 
-router.post('/', async (req, res) => {
+router.post('/routine', async (req, res) => {
 	const dayofWeek = req.body.day;
 	const exerciseId = req.body.exerciseId;
 	// const userId = req.body;

@@ -85,9 +85,9 @@ export default function CreateWorkout() {
 						return (
 							<>
 								<option
+									className='Drop-List'
 									key={index}
 									value={exercise.id}
-									id={exercise.id}
 									//									onChange={event => SetValues(event, exercise.id)}
 								>
 									{exercise.exercise_name} ID: {exercise.id}
