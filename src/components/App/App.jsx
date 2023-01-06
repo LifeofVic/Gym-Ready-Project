@@ -15,12 +15,12 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import Dashboard from '../Dashboard/Dashboard';
-import TodaysWorkout from '../TodaysWorkout-View/TodaysWorkout';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import CreateWorkout from '../CreateWorkout-View/CreateWorkout';
 import './App.css';
+import ViewFavorite from '../UserFavorites/ViewFavorite';
 
 function App() {
 	const dispatch = useDispatch();
@@ -61,8 +61,8 @@ function App() {
 					<ProtectedRoute
 						// logged in shows InfoPage else shows LoginPage
 						exact
-						path='/today'>
-						<TodaysWorkout />
+						path='/favorite'>
+						<ViewFavorite />
 					</ProtectedRoute>
 
 					<ProtectedRoute

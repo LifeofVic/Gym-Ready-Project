@@ -5,15 +5,17 @@ import { useSelector, useDispatch } from 'react-redux';
 //TODO This will display the View page for the users workout for the day.
 //? Will have to insert workouts for each user in order to display them onto the view page.
 
-export default function TodaysWorkout() {
+export default function ViewFavorite() {
 	const user = useSelector(store => store.user);
 	console.log('user info: ', user);
+
+	var FavoriteCollection = [];
 
 	const dispatch = useDispatch();
 
 	const fetchWorkout = () => {
 		console.log('FetchWorkout event listener is working. ');
-		dispatch({ type: 'FETCH_ROUTINE', payload: user.id });
+		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
 
 	return (

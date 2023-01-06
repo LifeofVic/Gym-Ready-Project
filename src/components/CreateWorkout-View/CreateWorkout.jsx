@@ -9,6 +9,8 @@ export default function CreateWorkout() {
 	// id / muscle_group / gif_url / exercise_name / muscle_target
 	const GroupedExercise = useSelector(store => store.exercise);
 
+	const user = useSelector(store => store.user);
+
 	//Will store the a string used for the animation.
 	const [ExerciseGif, setExerciseGif] = useState();
 	// Stores the number value the selected Exercise from the drop down list of exercise.
@@ -52,10 +54,15 @@ export default function CreateWorkout() {
 		const exerciseObject = GroupedExercise.filter(
 			object => object.id == ExerciseId
 		);
-		console.log('exercise object is: ', exerciseObject);
+		console.log(
+			'exercise object is: ',
+			exerciseObject[0].id,
+			'user data:',
+			user.id
+		);
 		dispatch({
 			type: 'SET_FAVORITE',
-			payload: { exerciseObject },
+			payload: { exercise: exerciseObject[0].id, user: user.id },
 		});
 		setExerciseGif('');
 		setExerciseId('');
@@ -96,12 +103,12 @@ export default function CreateWorkout() {
 					})}
 				</select>
 
-				<input type='number' placeholder='# of sets'></input>
+				{/* <input type='number' placeholder='# of sets'></input> */}
 			</div>
 			<div className='exercise-detail'>
 				<img src={ExerciseGif} />
 			</div>
-			<div className='day-section'>
+			{/* <div className='day-section'>
 				<label className='switch'>
 					<input type='checkbox' value='Sunday' onChange={DaySelected} />
 					<span className='slider round'>Sunday</span>
@@ -135,10 +142,10 @@ export default function CreateWorkout() {
 				<label className='switch'>
 					<input type='checkbox' value='Saturday' onChange={DaySelected} />
 					<span className='slider round'>Saturday</span>
-				</label>
-			</div>
+				</label> */}
+			{/* </div> */}
 			<button className='submit-btn' onClick={AddExercise}>
-				Add Exercise
+				Add Favorite
 			</button>
 		</>
 	);

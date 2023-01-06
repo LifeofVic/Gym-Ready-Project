@@ -28,8 +28,8 @@ function Nav() {
 							Home
 						</Link>
 
-						<Link className='navLink' to='/today'>
-							Today's Workout
+						<Link className='navLink' to='/favorite'>
+							Favorite
 						</Link>
 
 						<Link className='navLink' to='/create-workout'>
