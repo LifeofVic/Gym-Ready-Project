@@ -23,6 +23,8 @@ export default function CreateWorkout() {
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
 	};
 	//This will run where the event handler will set those values into the corresponding local state to be used in the [AddExercise] once the 'Add Exercise' button is clicked on.
+	//utilizing the filter method to look through the global store of the grouped exercises and find the one
+	//with the id value as the one event.target.value
 	const SetValues = event => {
 		setExerciseId(event.target.value);
 		console.log('Selected Exercise ID is: ', event.target.value);
@@ -30,7 +32,6 @@ export default function CreateWorkout() {
 		let findGif = GroupedExercise.filter(
 			object => object.id == event.target.value
 		);
-		console.log('Find is: ', find);
 		setExerciseGif(findGif[0].gif_url);
 	};
 
@@ -38,7 +39,7 @@ export default function CreateWorkout() {
 	//and store that value into the corresponding local state.
 	const DaySelected = e => {
 		setToggledDay(e.target.value);
-		console.log('Day Selected is: ', SelectDay);
+		console.log('Day Selected is: ', e.target.value);
 		e.preventDefault();
 	};
 
@@ -50,8 +51,11 @@ export default function CreateWorkout() {
 	const AddExercise = () => {
 		dispatch({
 			type: 'SET_ROUTINE',
-			payload: { day: SelectDay, exerciseId: ExerciseId },
+			payload: { day: SelectDay, exerciseId: Number(ExerciseId) },
 		});
+		setExerciseGif('');
+		setExerciseId('');
+		setToggledDay('');
 	};
 
 	return (
@@ -59,7 +63,7 @@ export default function CreateWorkout() {
 			{/* <header className='Create-Workout-Header'>Create Your Workout</header> */}
 			<div className='filter-section'>
 				<select placeholder='Muscle-Group' onChange={ExerciseByGroup}>
-					<option>Muscle Group... </option>
+					<option>Muscle Group...</option>
 					<option value='chest'>Chest </option>
 					<option value='back'>Back </option>
 					<option value='cardio'>Cardio </option>

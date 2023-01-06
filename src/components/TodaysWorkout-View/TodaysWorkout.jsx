@@ -6,11 +6,14 @@ import { useSelector, useDispatch } from 'react-redux';
 //? Will have to insert workouts for each user in order to display them onto the view page.
 
 export default function TodaysWorkout() {
+	const user = useSelector(store => store.user);
+	console.log('user info: ', user);
+
 	const dispatch = useDispatch();
 
 	const fetchWorkout = () => {
 		console.log('FetchWorkout event listener is working. ');
-		dispatch({ type: 'FETCH_ROUTINE' });
+		dispatch({ type: 'FETCH_ROUTINE', payload: user.id });
 	};
 
 	return (
@@ -23,9 +26,7 @@ export default function TodaysWorkout() {
 			<div>
 				<button onClick={fetchWorkout}> Fetch User workout</button>
 			</div>
-			<div>
-				This will display the users exercise for a certain day of the week.
-			</div>
+			<div className='exercise-content'></div>
 		</>
 	);
 }
