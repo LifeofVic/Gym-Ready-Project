@@ -10,3 +10,5 @@ router.get('/:userId', (req, res) => {
 router.post('/', (req, res) => {
 	//This will send the exercise parametes to the TABLE favorites and assign each value accordingly
 });
+
+module.exports = router;

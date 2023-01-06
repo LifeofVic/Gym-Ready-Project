@@ -49,9 +49,13 @@ export default function CreateWorkout() {
 	// exerciseId: 22   - value corresponding to the exercise's id that will be use to referenced
 	//											to the TABLE 'exercise'.
 	const AddExercise = () => {
+		const exerciseObject = GroupedExercise.filter(
+			object => object.id == ExerciseId
+		);
+		console.log('exercise object is: ', exerciseObject);
 		dispatch({
-			type: 'SET_ROUTINE',
-			payload: { day: SelectDay, exerciseId: Number(ExerciseId) },
+			type: 'SET_FAVORITE',
+			payload: { exerciseObject },
 		});
 		setExerciseGif('');
 		setExerciseId('');
@@ -84,12 +88,7 @@ export default function CreateWorkout() {
 					{GroupedExercise.map((exercise, index) => {
 						return (
 							<>
-								<option
-									className='Drop-List'
-									key={index}
-									value={exercise.id}
-									//									onChange={event => SetValues(event, exercise.id)}
-								>
+								<option className='Drop-List' key={index} value={exercise.id}>
 									{exercise.exercise_name} ID: {exercise.id}
 								</option>
 							</>
@@ -146,12 +145,10 @@ export default function CreateWorkout() {
 }
 
 //! This will allow the exercises names to be displayed onto the DOM in the dropdown filter.
-{
-	/* {GroupedExercise.map(exercise => {
+/* {GroupedExercise.map(exercise => {
 					return (
 						<>
 							<p> {exercise.exercise_name} </p>
 						</>
 					);
 				})} */
-}

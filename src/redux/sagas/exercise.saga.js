@@ -24,34 +24,4 @@ function* ExerciseByGroup(action) {
 	}
 }
 
-function* randomExercise(action) {
-	console.log(
-		'Making a random exercise request to db to display onto dashboard'
-	);
-	try {
-		const randomExercise = yield axios.get('/exercise');
-		console.log('Random Exercise is: ', randomExercise);
-		yield put({ type: 'SET_RANDOM_EXERCISE', payload: randomExercise.data });
-	} catch (error) {
-		console.log(
-			'Error in fetching from server random exercises using exercise.saga',
-			error
-		);
-	}
-}
-
-// function* ExerciseDisplay(action) {
-// 	console.log('In ExerciseDisplay Saga, ', action.type, action.payload);
-// 	try {
-// 		const ExerciseGif = yield axios.get(`/:exerciseGif/${action.payload}`);
-// 		console.log('Exercise object from DB: ', ExerciseGif.data);
-// 		yield put({
-// 			type: 'SET_SELECTED_EXERCISE',
-// 			payload: ExerciseGif.data,
-// 		});
-// 	} catch (err) {
-// 		console.log('Error in exercise.saga / ExerciseDisplay');
-// 	}
-// }
-
 export default exerciseSaga;
