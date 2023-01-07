@@ -11,13 +11,13 @@
 
 CREATE DATABASE gym_ready_db;
 
-
 CREATE TABLE exercise(
 	"id"            INTEGER  NOT NULL PRIMARY KEY,
 	"muscle_group"  VARCHAR(10) NOT NULL,
 	"gif_url"       VARCHAR(45) NOT NULL,
 	"exercise_name" VARCHAR(67) NOT NULL,
-	"muscle_target" VARCHAR(21) NOT NULL
+	"muscle_target" VARCHAR(21) NOT NULL,
+	"new_exercise_name" VARCHAR(50)
 );
 
 
@@ -33,57 +33,6 @@ CREATE TABLE "favorites"(
 	"user_id" integer REFERENCES "user"(id),
 	"exercise_id" integer REFERENCES exercise(id)
 );
-----------------------------------------------------------
-----------------------------------------------------------
-----------------------------------------------------------
-----------------------------------------------------------
-----------------------------------------------------------
-
-----------------------------------------------------------
-----------------------------------------------------------
-----------------------------------------------------------
-----------------------------------------------------------
-CREATE TABLE set (
-	"id" 						integer PRIMARY KEY UNIQUE,
-	"session_id" 		integer NOT NULL,
-	"rep" 					integer,
-	"weight_lbs" 		integer
-);
-
-CREATE TABLE exercise(
-"id"            INTEGER  NOT NULL PRIMARY KEY,
-"muscle_group"  VARCHAR(10) NOT NULL,
-"gif_url"       VARCHAR(45) NOT NULL,
-"exercise_name" VARCHAR(67) NOT NULL,
-"muscle_target" VARCHAR(21) NOT NULL,
-);
-
-CREATE TABLE session (
-	"id" 							SERIAL PRIMARY KEY,
-	"exercise_id" 		integer REFERENCES exercise,
-	"set_id" 					integer REFERENCES set
-);
-
-CREATE TABLE schedule (
-"id" SERIAL PRIMARY KEY,
-	"Monday"    integer REFERENCES "session",
-	"Tuesday"   integer REFERENCES "session",
-	"Wednesday" integer REFERENCES "session",
-	"Thursday"  integer REFERENCES "session",
-	"Friday"    integer REFERENCES "session",
-	"Saturday"  integer REFERENCES "session"
-);
-	
-
-
-CREATE TABLE "user" (
-	"id" 						SERIAL PRIMARY KEY,
-	"password" 			varchar(255) NOT NULL DEFAULT 'NOT NULL',
-	"username" 			varchar(255) NOT NULL UNIQUE,
-	"access_level"	integer NOT NULL DEFAULT '0',
-	"schedule_id" 	integer REFERENCES schedule
-);
-
 
 --CREATING THE EXERCISES 
 INSERT INTO exercise(muscle_group,gif_url,id,exercise_name,muscle_target) VALUES
