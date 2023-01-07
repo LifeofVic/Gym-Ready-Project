@@ -108,42 +108,6 @@ export default function CreateWorkout() {
 			<div className='exercise-detail'>
 				<img src={ExerciseGif} />
 			</div>
-			{/* <div className='day-section'>
-				<label className='switch'>
-					<input type='checkbox' value='Sunday' onChange={DaySelected} />
-					<span className='slider round'>Sunday</span>
-				</label>
-
-				<label className='switch'>
-					<input type='checkbox' value='Monday' onChange={DaySelected} />
-					<span className='slider round'>Monday</span>
-				</label>
-
-				<label className='switch'>
-					<input type='checkbox' value='Tuesday' onChange={DaySelected} />
-					<span className='slider round'>Tuesday</span>
-				</label>
-
-				<label className='switch'>
-					<input type='checkbox' value='Wednesday' onChange={DaySelected} />
-					<span className='slider round'>Wednesday</span>
-				</label>
-
-				<label className='switch'>
-					<input type='checkbox' value='Thursday' onChange={DaySelected} />
-					<span className='slider round'>Thursday</span>
-				</label>
-
-				<label className='switch'>
-					<input type='checkbox' value='Friday' onChange={DaySelected} />
-					<span className='slider round'>Friday</span>
-				</label>
-
-				<label className='switch'>
-					<input type='checkbox' value='Saturday' onChange={DaySelected} />
-					<span className='slider round'>Saturday</span>
-				</label> */}
-			{/* </div> */}
 			<button className='submit-btn' onClick={AddExercise}>
 				Add Favorite
 			</button>

@@ -30,4 +30,14 @@ function* getFavorite(action) {
 	}
 }
 
+function* deleteFavorite(action) {
+	console.log('In Favorite.Saga / deleteFavorite Generator', action.payload);
+	//Create a delete sql call by passing in the exercise id that is found in the favorites table..action payload will have the values from when the delete button was clicked.
+	try {
+		//const deleteFavorite = yield axios.post(`/favorite`)
+	} catch (error) {
+		console.log('Error in favorite.saga / deleteFavorite generator', error);
+	}
+}
+
 export default favoriteSaga;

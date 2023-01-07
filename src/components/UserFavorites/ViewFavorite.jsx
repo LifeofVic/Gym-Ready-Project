@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Button from '@mui/material/Button';
+import '../UserFavorites/ViewFavorite.css';
 
 //TODO This will display the View page for the users workout for the day.
 //? Will have to insert workouts for each user in order to display them onto the view page.
@@ -24,6 +25,17 @@ export default function ViewFavorite() {
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
 
+	const DisplayAnimation = e => {
+		var imageSource = e.target.value;
+		console.log('Gif: ', imageSource);
+	};
+
+	const DeleteExercise = e => {
+		const deleteId = e.target.value;
+		console.log('Exercise Selected for Deletion: ', deleteId);
+		dispatch({ type: 'DELETE_EXERCISE', payload: deleteId });
+	};
+
 	return (
 		<>
 			<div className='container'>
@@ -42,9 +54,26 @@ export default function ViewFavorite() {
 							<tr key={exercise.id} id='row-content'>
 								<td> {exercise.exercise_name} </td>
 								<td> {exercise.muscle_target} </td>
-								<button className='view-btn'>VIEW</button>
-								<button className='edit-btn'>EDIT</button>
-								<button className='delete-btn'>DELETE</button>
+								<Button
+									className='view-btn'
+									value={exercise.gif_url}
+									onClick={DisplayAnimation}
+									variant='contained'>
+									VIEW
+								</Button>
+								<Button
+									className='edit-btn'
+									value={exercise.id}
+									variant='contained'>
+									EDIT
+								</Button>
+								<Button
+									className='delete-btn'
+									value={exercise.id}
+									variant='contained'
+									onClick={DeleteExercise}>
+									DELETE
+								</Button>
 							</tr>
 						</table>
 					);

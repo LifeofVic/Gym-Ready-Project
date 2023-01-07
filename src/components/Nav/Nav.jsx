@@ -33,7 +33,7 @@ function Nav() {
 						</Link>
 
 						<Link className='navLink' to='/create-workout'>
-							Create Workout
+							Search Exercise
 						</Link>
 						<LogOutButton className='navLink' />
 					</>
