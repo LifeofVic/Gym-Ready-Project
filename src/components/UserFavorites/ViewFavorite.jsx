@@ -37,6 +37,22 @@ export default function ViewFavorite() {
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
 
+	const EditMode = e => {
+		console.log('In Edit Mode', e.target.value);
+	};
+
+	//! This was a test run to get the buttons that appear below each elements when displayed on the favorites page to hide/shoe option buttons
+	// var optionsButton = document.getElementById('more-options');
+
+	// optionsButton.onClick = function () {
+	// 	var div = document.getElementById('button-options');
+	// 	if (div.style.display !== 'none') {
+	// 		div.style.display = 'none';
+	// 	} else {
+	// 		div.style.display = 'block';
+	// 	}
+	// };
+
 	return (
 		<>
 			<div className='container'>
@@ -55,6 +71,11 @@ export default function ViewFavorite() {
 							<tr key={exercise.id} id='row-content'>
 								<td> {exercise.exercise_name} </td>
 								<td> {exercise.muscle_target} </td>
+								<td>
+									<button id='more-options'>More</button>
+								</td>
+							</tr>
+							<tr id='button-options'>
 								<Button
 									className='view-btn'
 									value={exercise.gif_url}
@@ -65,7 +86,8 @@ export default function ViewFavorite() {
 								<Button
 									className='edit-btn'
 									value={exercise.id}
-									variant='contained'>
+									variant='contained'
+									onClick={EditMode}>
 									EDIT
 								</Button>
 								<Button
