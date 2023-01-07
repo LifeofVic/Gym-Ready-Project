@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -7,11 +7,17 @@ import { useSelector, useDispatch } from 'react-redux';
 
 export default function ViewFavorite() {
 	const user = useSelector(store => store.user);
-	console.log('user info: ', user);
+	const data = useSelector(store => store.favorite.FavoriteList);
 
-	var FavoriteCollection = [];
+	console.log('user info: ', user); //?Displays the users basic information.
+
+	console.log('Favorite List: ', data); //?Hold an ARRAY of OBJECT received from the database using the sql query and saving them into the reducer aka store.favorite...
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
+	}, []);
 
 	const fetchFavorites = () => {
 		console.log('FetchWorkout event listener is working. ');
@@ -23,12 +29,27 @@ export default function ViewFavorite() {
 			<div className='container'>
 				<p>Todays Workout View</p>
 				<p>Will List all the exercise associated with todays day.</p>
-			</div>
+				<th id='table-header'>
+					<tr>
+						<td>Exercise Name</td>
+						<td>Targeted Muscle</td>
+					</tr>
+				</th>
 
-			<div>
-				<button onClick={fetchFavorites}> Fetch User workout</button>
+				{data.map((exercise, index) => {
+					return (
+						<table className='Exercise-content'>
+							<tr key={exercise.id} id='row-content'>
+								<td> {exercise.exercise_name} </td>
+								<td> {exercise.muscle_target} </td>
+								<button className='view-btn'>VIEW</button>
+								<button className='edit-btn'>EDIT</button>
+								<button className='delete-btn'>DELETE</button>
+							</tr>
+						</table>
+					);
+				})}
 			</div>
-			<div className='exercise-content'></div>
 		</>
 	);
 }

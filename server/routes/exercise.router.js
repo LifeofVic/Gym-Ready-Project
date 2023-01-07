@@ -25,6 +25,14 @@ router.get('/:musclegroup', (req, res) => {
 		});
 }); //End of Router.Get
 
+router.get('/:exerciseID', (req, res) => {
+	const exerciseId = req.params.exerciseId;
+	console.log(
+		'Fetching EXERCISE based on the exercise ID provided',
+		exerciseId
+	);
+});
+
 /**
  * POST route template
  */
