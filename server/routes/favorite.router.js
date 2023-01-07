@@ -47,4 +47,21 @@ router.post('/', (req, res) => {
 		});
 });
 
+router.delete('/:favoriteId', (req, res) => {
+	console.log('IN DELETE ROUTER');
+	console.log('DELETE ROUTER / req.params: ', req.params);
+	const sqlText = 'DELETE FROM "favorites" WHERE "id" = $1;';
+	const exerciseId = Number(req.params.favoriteId);
+
+	pool
+		.query(sqlText, [exerciseId])
+		.then(result => {
+			console.log('DELETION SUCCESSFUL FROM DB!!!');
+			res.sendStatus(200);
+		})
+		.catch(error => {
+			console.log('Error code: ', error);
+		});
+});
+
 module.exports = router;

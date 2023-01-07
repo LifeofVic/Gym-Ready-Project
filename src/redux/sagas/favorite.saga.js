@@ -5,6 +5,7 @@ import { useState } from 'react';
 function* favoriteSaga() {
 	yield takeLatest('SET_FAVORITE', setFavorite);
 	yield takeLatest('FETCH_FAVORITE', getFavorite);
+	yield takeLatest('DELETE_FAVORITE', deleteFavorite);
 }
 //This will send the object of the entire exercise the user chooses to save to their favorite table.
 function* setFavorite(action) {
@@ -34,7 +35,8 @@ function* deleteFavorite(action) {
 	console.log('In Favorite.Saga / deleteFavorite Generator', action.payload);
 	//Create a delete sql call by passing in the exercise id that is found in the favorites table..action payload will have the values from when the delete button was clicked.
 	try {
-		//const deleteFavorite = yield axios.post(`/favorite`)
+		const deleteFavorite = yield axios.delete(`/favorite/${action.payload}`);
+		console.log('DELETION SUCCESSFUL', deleteFavorite);
 	} catch (error) {
 		console.log('Error in favorite.saga / deleteFavorite generator', error);
 	}

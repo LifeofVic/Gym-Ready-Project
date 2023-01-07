@@ -31,9 +31,10 @@ export default function ViewFavorite() {
 	};
 
 	const DeleteExercise = e => {
-		const deleteId = e.target.value;
+		const deleteId = Number(e.target.value);
 		console.log('Exercise Selected for Deletion: ', deleteId);
-		dispatch({ type: 'DELETE_EXERCISE', payload: deleteId });
+		dispatch({ type: 'DELETE_FAVORITE', payload: deleteId });
+		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
 
 	return (
