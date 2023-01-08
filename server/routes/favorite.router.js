@@ -1,3 +1,4 @@
+const { Alert } = require('@mui/material');
 const { response } = require('express');
 const express = require('express');
 const { useSelector } = require('react-redux');
@@ -64,4 +65,22 @@ router.delete('/:favoriteId', (req, res) => {
 		});
 });
 
+router.put('/:likeExerciseID', (req, res) => {
+	const ExerciseID = req.params.likeExerciseID;
+	console.log('In router.put', ExerciseID);
+
+	const sqlText = `UPDATE "favorites" SET "like" = true WHERE "id" = $1 `;
+	pool
+		.query(sqlText, [ExerciseID])
+		.then(() => {
+			console.log('UPDATE was Successful');
+			res.sendStatus(200);
+		})
+		.catch(error => {
+			console.log('Error found in router.put: ', error);
+		});
+});
+
 module.exports = router;
+
+`UPDATE "todo" SET "IsComplete" = 'true' WHERE "id" = $1;`;

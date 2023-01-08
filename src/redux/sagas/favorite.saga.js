@@ -6,6 +6,7 @@ function* favoriteSaga() {
 	yield takeLatest('SET_FAVORITE', setFavorite);
 	yield takeLatest('FETCH_FAVORITE', getFavorite);
 	yield takeLatest('DELETE_FAVORITE', deleteFavorite);
+	yield takeLatest('SET_TO_LIKE', LikeExercise);
 }
 //This will send the object of the entire exercise the user chooses to save to their favorite table.
 function* setFavorite(action) {
@@ -42,4 +43,14 @@ function* deleteFavorite(action) {
 	}
 }
 
+function* LikeExercise(action) {
+	console.log('In Favorite.Saga / LikeExercise Generator', action.payload);
+
+	try {
+		const like = yield axios.put(`/favorite/${action.payload}`);
+		console.log('Like results: ', like);
+	} catch (error) {
+		console.log('Error in favorite.Saga / LikeExercise Generator', error);
+	}
+}
 export default favoriteSaga;

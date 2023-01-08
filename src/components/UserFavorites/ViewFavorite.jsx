@@ -40,6 +40,8 @@ export default function ViewFavorite() {
 
 	const EditMode = e => {
 		console.log('In Edit Mode', e.target.value);
+		dispatch({ type: 'SET_TO_LIKE', payload: e.target.value });
+		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
 
 	//! This was a test run to get the buttons that appear below each elements when displayed on the favorites page to hide/shoe option buttons
@@ -66,38 +68,74 @@ export default function ViewFavorite() {
 					</tr>
 				</th>
 				{data.map((exercise, index) => {
-					return (
-						<table className='Exercise-content'>
-							<tr key={exercise.id} id='row-content'>
-								<td id='name'> {exercise.exercise_name} </td>
-								<td id='target-muscle'> {exercise.muscle_target} </td>
-							</tr>
-							<tr className='button-options'>
-								<Button
-									className='view-btn'
-									value={exercise.gif_url}
-									onClick={DisplayAnimation}
-									variant='contained'>
-									VIEW
-								</Button>
-								<Button
-									className='edit-btn'
-									id='popUp'
-									value={exercise.id}
-									variant='contained'
-									onClick={EditMode}>
-									EDIT
-								</Button>
-								<Button
-									className='delete-btn'
-									value={exercise.id}
-									variant='contained'
-									onClick={DeleteExercise}>
-									DELETE
-								</Button>
-							</tr>
-						</table>
-					);
+					if (exercise.like == true) {
+						return (
+							<table className='Exercise-content-liked'>
+								<tr key={exercise.id} id='row-content'>
+									<td id='name'>{exercise.exercise_name} </td>
+									<td id='target-muscle'> {exercise.muscle_target} </td>
+								</tr>
+								<tr className='button-options'>
+									<Button
+										className='view-btn'
+										value={exercise.gif_url}
+										onClick={DisplayAnimation}
+										variant='contained'>
+										VIEW
+									</Button>
+									<Button
+										className='edit-btn'
+										id='popUp'
+										value={exercise.id}
+										variant='contained'
+										onClick={EditMode}>
+										{' '}
+										❤️
+									</Button>
+									<Button
+										className='delete-btn'
+										value={exercise.id}
+										variant='contained'
+										onClick={DeleteExercise}>
+										DELETE
+									</Button>
+								</tr>
+							</table>
+						);
+					} else {
+						return (
+							<table className='Exercise-content'>
+								<tr key={exercise.id} id='row-content'>
+									<td id='name'>{exercise.exercise_name} </td>
+									<td id='target-muscle'> {exercise.muscle_target} </td>
+								</tr>
+								<tr className='button-options'>
+									<Button
+										className='view-btn'
+										value={exercise.gif_url}
+										onClick={DisplayAnimation}
+										variant='contained'>
+										VIEW
+									</Button>
+									<Button
+										className='edit-btn'
+										id='popUp'
+										value={exercise.id}
+										variant='contained'
+										onClick={EditMode}>
+										LIKE
+									</Button>
+									<Button
+										className='delete-btn'
+										value={exercise.id}
+										variant='contained'
+										onClick={DeleteExercise}>
+										DELETE
+									</Button>
+								</tr>
+							</table>
+						);
+					}
 				})}
 			</div>
 		</>
