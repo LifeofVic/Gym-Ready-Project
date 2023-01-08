@@ -39,3 +39,15 @@ margin-left: 10px;
 	margin-left: 10px;
 }
 
+select{
+font-size: 14pt;
+height: 26px; 
+}
+.exercise-list{
+height: 28px;
+}
+
+.filter-section{
+border-radius: 15px;
+}
+

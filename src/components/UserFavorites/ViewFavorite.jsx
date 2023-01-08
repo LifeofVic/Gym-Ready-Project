@@ -21,10 +21,10 @@ export default function ViewFavorite() {
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	}, []);
 
-	const fetchFavorites = () => {
-		console.log('FetchWorkout event listener is working. ');
-		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
-	};
+	// const fetchFavorites = () => {
+	// 	console.log('FetchWorkout event listener is working. ');
+	// 	dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
+	// };
 
 	const DisplayAnimation = e => {
 		var imageSource = e.target.value;

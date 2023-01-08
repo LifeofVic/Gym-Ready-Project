@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import '../CreateWorkout-View/CreateWorkout.css';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-
+import Button from '@mui/material/Button';
 export default function CreateWorkout() {
 	const dispatch = useDispatch();
 	//This uses global state to bring in the array of objects with the same muscle_group which each object will contain:
 	// id / muscle_group / gif_url / exercise_name / muscle_target
 	const GroupedExercise = useSelector(store => store.exercise);
+
+	//onst [filterByTarget, setFilterByTarget] = useSelector([]);
 
 	const user = useSelector(store => store.user);
 
@@ -64,6 +66,8 @@ export default function CreateWorkout() {
 			type: 'SET_FAVORITE',
 			payload: { exercise: exerciseObject[0].id, user: user.id },
 		});
+		document.getElementById('muscle-group').selectedIndex = 0;
+		document.getElementById('exercise-list-by-group').selectedIndex = 0;
 		setExerciseGif('');
 		setExerciseId('');
 		setToggledDay('');
@@ -73,8 +77,11 @@ export default function CreateWorkout() {
 		<>
 			{/* <header className='Create-Workout-Header'>Create Your Workout</header> */}
 			<div className='filter-section'>
-				<select placeholder='Muscle-Group' onChange={ExerciseByGroup}>
-					<option>Muscle Group...</option>
+				<select
+					placeholder='Muscle-Group'
+					id='muscle-group'
+					onChange={ExerciseByGroup}>
+					<option>Select Muscle Group</option>
 					<option value='chest'>Chest </option>
 					<option value='back'>Back </option>
 					<option value='cardio'>Cardio </option>
@@ -90,13 +97,14 @@ export default function CreateWorkout() {
 				<select
 					placeholder='Exercise'
 					className='exercise-list'
+					id='exercise-list-by-group'
 					onChange={SetValues}>
-					<option>exercise selection... </option>
+					<option>Select Exercise </option>
 					{GroupedExercise.map((exercise, index) => {
 						return (
 							<>
 								<option className='Drop-List' key={index} value={exercise.id}>
-									{exercise.exercise_name} ID: {exercise.id}
+									{exercise.exercise_name}
 								</option>
 							</>
 						);
@@ -108,9 +116,9 @@ export default function CreateWorkout() {
 			<div className='exercise-detail'>
 				<img src={ExerciseGif} />
 			</div>
-			<button className='submit-btn' onClick={AddExercise}>
+			<Button className='submit-btn' onClick={AddExercise} variant='contained'>
 				Add Favorite
-			</button>
+			</Button>
 		</>
 	);
 }
