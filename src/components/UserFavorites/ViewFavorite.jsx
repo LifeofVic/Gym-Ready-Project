@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
+
 import '../UserFavorites/ViewFavorite.css';
 
 //TODO This will display the View page for the users workout for the day.
@@ -64,18 +65,14 @@ export default function ViewFavorite() {
 						<td>Targeted Muscle</td>
 					</tr>
 				</th>
-
 				{data.map((exercise, index) => {
 					return (
 						<table className='Exercise-content'>
 							<tr key={exercise.id} id='row-content'>
-								<td> {exercise.exercise_name} </td>
-								<td> {exercise.muscle_target} </td>
-								<td>
-									<button id='more-options'>More</button>
-								</td>
+								<td id='name'> {exercise.exercise_name} </td>
+								<td id='target-muscle'> {exercise.muscle_target} </td>
 							</tr>
-							<tr id='button-options'>
+							<tr className='button-options'>
 								<Button
 									className='view-btn'
 									value={exercise.gif_url}
@@ -85,6 +82,7 @@ export default function ViewFavorite() {
 								</Button>
 								<Button
 									className='edit-btn'
+									id='popUp'
 									value={exercise.id}
 									variant='contained'
 									onClick={EditMode}>

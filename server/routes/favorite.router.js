@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
 	console.log('Router.GET / Req.body: ', req.params.id);
 
 	const userId = req.params.id;
-	const sqlText = `SELECT "user_id", "favorites".id, "exercise_id", "muscle_group", "gif_url","exercise_name", "muscle_target" FROM "favorites" JOIN "exercise" 
+	const sqlText = `SELECT "user_id", "favorites".id, "exercise_id", "muscle_group", "gif_url","exercise_name", "muscle_target", "like" FROM "favorites" JOIN "exercise" 
   ON "exercise".id = "favorites".exercise_id
 	WHERE "user_id" = $1`;
 	pool

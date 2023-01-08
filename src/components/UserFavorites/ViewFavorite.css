@@ -1,0 +1,31 @@
+
+.container {
+padding-bottom: 75px;
+margin: 10px;
+}
+
+
+.Exercise-content{
+border: solid black;
+width: 95%;
+max-width: 400px;
+margin: 8px;
+padding: 10px;
+border-radius: 15px;
+background-color:blanchedalmond;
+}
+
+#name{
+width: 100%;
+inline-size: min-content;
+}
+
+.view-btn{
+margin-left: 10px;
+}
+.edit-btn {
+	margin-left: 10px;
+}
+.delete-btn {
+	margin-left: 10px;
+}
