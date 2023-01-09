@@ -49,12 +49,20 @@ export default function ViewFavorite() {
 			//! This switches to LIKE ---------
 			console.log('In Edit Mode', e.target.value); //holds the value for the exercise id found in the table "exercises".
 
-			dispatch({ type: 'SET_TO_LIKE', id: e.target.value, payload: true });
+			dispatch({
+				type: 'CHANGE_TRUE_FALSE',
+				id: e.target.value,
+				payload: true,
+			});
 			dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 			//! -------------------------------
 		}
 		if (exerciseObject[0].like === true) {
-			dispatch({ type: 'SET_TO_LIKE', id: e.target.value, payload: false });
+			dispatch({
+				type: 'CHANGE_TRUE_FALSE',
+				id: e.target.value,
+				payload: false,
+			});
 			dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 		}
 	};

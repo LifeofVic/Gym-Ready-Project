@@ -6,8 +6,7 @@ function* favoriteSaga() {
 	yield takeLatest('SET_FAVORITE', setFavorite);
 	yield takeLatest('FETCH_FAVORITE', getFavorite);
 	yield takeLatest('DELETE_FAVORITE', deleteFavorite);
-	yield takeLatest('SET_TO_LIKE', LikeExercise);
-	yield takeLatest('UNLIKE', UnlikeExercise);
+	yield takeLatest('CHANGE_TRUE_FALSE', LikeExercise);
 }
 //This will send the object of the entire exercise the user chooses to save to their favorite table.
 function* setFavorite(action) {
@@ -55,7 +54,4 @@ function* LikeExercise(action) {
 	}
 }
 
-function* UnlikeExercise(action) {
-	console.log('In Favorite.Saga / LikeExercise Generator', action.payload);
-}
 export default favoriteSaga;
