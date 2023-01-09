@@ -39,9 +39,24 @@ export default function ViewFavorite() {
 	};
 
 	const UpdateLike = e => {
-		console.log('In Edit Mode', e.target.value);
-		dispatch({ type: 'SET_TO_LIKE', payload: e.target.value });
-		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
+		const exerciseObject = data.filter(object => object.id == e.target.value);
+		console.log(
+			'The object needed to be updated on click is:  ',
+			exerciseObject[0]
+		);
+
+		if (exerciseObject[0].like === false) {
+			//! This switches to LIKE ---------
+			console.log('In Edit Mode', e.target.value); //holds the value for the exercise id found in the table "exercises".
+
+			dispatch({ type: 'SET_TO_LIKE', id: e.target.value, payload: true });
+			dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
+			//! -------------------------------
+		}
+		if (exerciseObject[0].like === true) {
+			dispatch({ type: 'SET_TO_LIKE', id: e.target.value });
+			dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
+		}
 	};
 
 	//! This was a test run to get the buttons that appear below each elements when displayed on the favorites page to hide/shoe option buttons
