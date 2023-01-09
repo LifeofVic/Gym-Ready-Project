@@ -1,0 +1,14 @@
+#user-input{
+font-size: 16pt;
+}
+
+.new-exercises-options{
+width: fit-content;
+}
+
+.content{
+align-items: center;
+display: flex;
+flex-wrap: wrap;
+border: solid black;
+}
