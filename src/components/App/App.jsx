@@ -21,6 +21,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import CreateWorkout from '../CreateWorkout-View/CreateWorkout';
 import './App.css';
 import ViewFavorite from '../UserFavorites/ViewFavorite';
+import InsertNewExercise from '../InsertNewExercise/InsertNewExercise';
 
 function App() {
 	const dispatch = useDispatch();
@@ -70,6 +71,13 @@ function App() {
 						exact
 						path='/create-workout'>
 						<CreateWorkout />
+					</ProtectedRoute>
+
+					<ProtectedRoute
+						// logged in shows InfoPage else shows LoginPage
+						exact
+						path='/InsertNewExercise'>
+						<InsertNewExercise />
 					</ProtectedRoute>
 
 					<Route exact path='/login'>

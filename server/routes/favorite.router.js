@@ -65,13 +65,19 @@ router.delete('/:favoriteId', (req, res) => {
 		});
 });
 
-router.put('/:likeExerciseID', (req, res) => {
+router.put('/:likeExerciseID/:TrueFalse', (req, res) => {
 	const ExerciseID = req.params.likeExerciseID;
-	console.log('In router.put', ExerciseID);
+	const TrueFalse = req.params.TrueFalse;
+	console.log(
+		'In router.put',
+		'Exercise ID in TABLE "favorites',
+		ExerciseID,
+		'Current '
+	);
 
-	const sqlText = `UPDATE "favorites" SET "like" = true WHERE "id" = $1 `;
+	const sqlText = `UPDATE "favorites" SET "like" = $1 WHERE "id" = $2 `;
 	pool
-		.query(sqlText, [ExerciseID])
+		.query(sqlText, [TrueFalse, ExerciseID])
 		.then(() => {
 			console.log('UPDATE was Successful');
 			res.sendStatus(200);
@@ -80,6 +86,21 @@ router.put('/:likeExerciseID', (req, res) => {
 			console.log('Error found in router.put: ', error);
 		});
 });
+// router.put('/:likeExerciseID', (req, res) => {
+// 	const ExerciseID = req.params.likeExerciseID;
+// 	console.log('In router.put', ExerciseID);
+
+// 	const sqlText = `UPDATE "favorites" SET "like" = true WHERE "id" = $1 `;
+// 	pool
+// 		.query(sqlText, [ExerciseID])
+// 		.then(() => {
+// 			console.log('UPDATE was Successful');
+// 			res.sendStatus(200);
+// 		})
+// 		.catch(error => {
+// 			console.log('Error found in router.put: ', error);
+// 		});
+// });
 
 module.exports = router;
 

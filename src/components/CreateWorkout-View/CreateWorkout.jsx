@@ -2,23 +2,22 @@ import React, { useState } from 'react';
 import '../CreateWorkout-View/CreateWorkout.css';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 export default function CreateWorkout() {
 	const dispatch = useDispatch();
 	//This uses global state to bring in the array of objects with the same muscle_group which each object will contain:
 	// id / muscle_group / gif_url / exercise_name / muscle_target
 	const GroupedExercise = useSelector(store => store.exercise);
-
 	//onst [filterByTarget, setFilterByTarget] = useSelector([]);
-
 	const user = useSelector(store => store.user);
 
 	//Will store the a string used for the animation.
 	const [ExerciseGif, setExerciseGif] = useState();
 	// Stores the number value the selected Exercise from the drop down list of exercise.
 	const [ExerciseId, setExerciseId] = useState(0);
-	// Stores the  string value from the toggled day selected by the user.
-	const [SelectDay, setToggledDay] = useState('');
+
+	const history = useHistory();
 
 	// This will send the muscle_group value of data type (string) to the exercise.Saga and set result.row to the [store.exercise] where all the exercises with that muscle_group will store in.   GroupedExercise.
 	const ExerciseByGroup = e => {
@@ -41,11 +40,11 @@ export default function CreateWorkout() {
 
 	//This event listener will run when the user selects the desired day in the toggle options of the view page
 	//and store that value into the corresponding local state.
-	const DaySelected = e => {
-		setToggledDay(e.target.value);
-		console.log('Day Selected is: ', e.target.value);
-		e.preventDefault();
-	};
+	// const DaySelected = e => {
+	// 	setToggledDay(e.target.value);
+	// 	console.log('Day Selected is: ', e.target.value);
+	// 	e.preventDefault();
+	// };
 
 	//Once all the values have been saved to the proper variable,
 	//This will send:
@@ -70,7 +69,11 @@ export default function CreateWorkout() {
 		document.getElementById('exercise-list-by-group').selectedIndex = 0;
 		setExerciseGif('');
 		setExerciseId('');
-		setToggledDay('');
+	};
+
+	const HandleClick = () => {
+		console.log('Add New Exercise had been Clicked!');
+		history.push('/InsertNewExercise');
 	};
 
 	return (
@@ -117,7 +120,13 @@ export default function CreateWorkout() {
 				<img src={ExerciseGif} />
 			</div>
 			<Button className='submit-btn' onClick={AddExercise} variant='contained'>
-				Add Favorite
+				Add To Favorites
+			</Button>
+			<Button
+				className='add-exercise-btn'
+				onClick={HandleClick}
+				variant='contained'>
+				Add New Exercise
 			</Button>
 		</>
 	);
