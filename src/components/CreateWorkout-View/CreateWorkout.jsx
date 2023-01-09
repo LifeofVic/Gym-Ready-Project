@@ -9,7 +9,7 @@ export default function CreateWorkout() {
 	//This uses global state to bring in the array of objects with the same muscle_group which each object will contain:
 	// id / muscle_group / gif_url / exercise_name / muscle_target
 	const GroupedExercise = useSelector(store => store.exercise);
-	//onst [filterByTarget, setFilterByTarget] = useSelector([]);
+
 	const user = useSelector(store => store.user);
 
 	//Will store the a string used for the animation.
@@ -38,19 +38,6 @@ export default function CreateWorkout() {
 		setExerciseGif(findGif[0].gif_url);
 	};
 
-	//This event listener will run when the user selects the desired day in the toggle options of the view page
-	//and store that value into the corresponding local state.
-	// const DaySelected = e => {
-	// 	setToggledDay(e.target.value);
-	// 	console.log('Day Selected is: ', e.target.value);
-	// 	e.preventDefault();
-	// };
-
-	//Once all the values have been saved to the proper variable,
-	//This will send:
-	// day: 'Monday'    - Day selected.
-	// exerciseId: 22   - value corresponding to the exercise's id that will be use to referenced
-	//											to the TABLE 'exercise'.
 	const AddExercise = () => {
 		const exerciseObject = GroupedExercise.filter(
 			object => object.id == ExerciseId
@@ -70,7 +57,7 @@ export default function CreateWorkout() {
 		setExerciseGif('');
 		setExerciseId('');
 	};
-
+	//TODO Create a new view that will allow the user to add a new exercise.
 	const HandleClick = () => {
 		console.log('Add New Exercise had been Clicked!');
 		history.push('/InsertNewExercise');

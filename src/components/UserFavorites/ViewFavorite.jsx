@@ -38,6 +38,7 @@ export default function ViewFavorite() {
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
 
+	//? This will check the value for the exercise object's like (true / false) that was clicked on. Then th
 	const UpdateLike = e => {
 		const exerciseObject = data.filter(object => object.id == e.target.value);
 		console.log(
@@ -54,7 +55,7 @@ export default function ViewFavorite() {
 				id: e.target.value,
 				payload: true,
 			});
-			dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
+			//dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } }); //!move to favorite saga.
 			//! -------------------------------
 		}
 		if (exerciseObject[0].like === true) {
@@ -63,7 +64,7 @@ export default function ViewFavorite() {
 				id: e.target.value,
 				payload: false,
 			});
-			dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
+			//dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 		}
 	};
 
