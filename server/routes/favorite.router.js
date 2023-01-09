@@ -65,9 +65,9 @@ router.delete('/:favoriteId', (req, res) => {
 		});
 });
 
-router.put('/:likeExerciseID/:ToDo', (req, res) => {
+router.put('/:likeExerciseID/:TrueFalse', (req, res) => {
 	const ExerciseID = req.params.likeExerciseID;
-	const TrueFalse = req.params.ToDo;
+	const TrueFalse = req.params.TrueFalse;
 	console.log(
 		'In router.put',
 		'Exercise ID in TABLE "favorites',

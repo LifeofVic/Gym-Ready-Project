@@ -54,7 +54,7 @@ export default function ViewFavorite() {
 			//! -------------------------------
 		}
 		if (exerciseObject[0].like === true) {
-			dispatch({ type: 'SET_TO_LIKE', id: e.target.value });
+			dispatch({ type: 'SET_TO_LIKE', id: e.target.value, payload: false });
 			dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 		}
 	};
