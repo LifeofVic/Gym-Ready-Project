@@ -12,4 +12,16 @@ const exerciseGroup = (state = [], action) => {
 	}
 };
 
-export default exerciseGroup;
+const InsertGroup = (state = [], action) => {
+	switch (action.type) {
+		case 'INSERT_EXERCISE':
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
+export default combineReducers({
+	exerciseGroup,
+	InsertGroup,
+});

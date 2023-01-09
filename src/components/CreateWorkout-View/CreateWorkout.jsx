@@ -8,7 +8,7 @@ export default function CreateWorkout() {
 	const dispatch = useDispatch();
 	//This uses global state to bring in the array of objects with the same muscle_group which each object will contain:
 	// id / muscle_group / gif_url / exercise_name / muscle_target
-	const GroupedExercise = useSelector(store => store.exercise);
+	const GroupedExercise = useSelector(store => store.exercise.exerciseGroup);
 
 	const user = useSelector(store => store.user);
 
@@ -39,6 +39,8 @@ export default function CreateWorkout() {
 	};
 
 	const AddExercise = () => {
+		//!conditional where the 2 drop down menus is not selected then display alert.
+
 		const exerciseObject = GroupedExercise.filter(
 			object => object.id == ExerciseId
 		);

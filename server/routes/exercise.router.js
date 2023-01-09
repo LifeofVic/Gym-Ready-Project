@@ -25,19 +25,36 @@ router.get('/:musclegroup', (req, res) => {
 		});
 }); //End of Router.Get
 
+router.get(`/Insert/:musclegroup`, (req, res) => {
+	const musclegroup = req.params.musclegroup;
+	console.log(
+		'Getting the target muscle options by muscle group: ',
+		musclegroup
+	);
+
+	const sqlText = `SELECT "muscle_group", "muscle_target" FROM "exercise"
+WHERE "muscle_group" = $1 GROUP BY "muscle_group", "muscle_target";`;
+
+	pool
+		.query(sqlText, [musclegroup])
+		.then(result => {
+			res.send(result.rows);
+		})
+		.catch(error => {
+			console.log(
+				'Error in Exercise.router / router.get / Insert/:musclegroup',
+				error
+			);
+			res.sendStatus(500);
+		});
+});
+
 router.get('/:exerciseID', (req, res) => {
 	const exerciseId = req.params.exerciseId;
 	console.log(
 		'Fetching EXERCISE based on the exercise ID provided',
 		exerciseId
 	);
-});
-
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-	// POST route code here
 });
 
 module.exports = router;
