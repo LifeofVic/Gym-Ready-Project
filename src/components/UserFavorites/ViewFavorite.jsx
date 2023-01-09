@@ -63,8 +63,8 @@ export default function ViewFavorite() {
 				<p>Will List all the exercise associated with todays day.</p>
 				<th id='table-header'>
 					<tr>
-						<td>Exercise Name</td>
-						<td>Targeted Muscle</td>
+						<th>Exercise Name</th>
+						<th>Targeted Muscle</th>
 					</tr>
 				</th>
 				{data.map((exercise, index) => {

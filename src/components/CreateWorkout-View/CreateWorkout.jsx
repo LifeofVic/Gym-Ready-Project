@@ -73,6 +73,10 @@ export default function CreateWorkout() {
 		setToggledDay('');
 	};
 
+	const HandleClick = () => {
+		console.log('Add New Exercise had been Clicked!');
+	};
+
 	return (
 		<>
 			{/* <header className='Create-Workout-Header'>Create Your Workout</header> */}
@@ -117,7 +121,13 @@ export default function CreateWorkout() {
 				<img src={ExerciseGif} />
 			</div>
 			<Button className='submit-btn' onClick={AddExercise} variant='contained'>
-				Add Favorite
+				Add To Favorites
+			</Button>
+			<Button
+				className='add-exercise-btn'
+				onClick={HandleClick}
+				variant='contained'>
+				Add New Exercise
 			</Button>
 		</>
 	);
