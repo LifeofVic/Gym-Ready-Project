@@ -53,7 +53,7 @@ export default function ViewFavorite() {
 			dispatch({
 				type: 'CHANGE_TRUE_FALSE',
 				id: e.target.value,
-				payload: true,
+				payload: { boolean: true, user: user },
 			});
 			//dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } }); //!move to favorite saga.
 			//! -------------------------------
@@ -62,7 +62,7 @@ export default function ViewFavorite() {
 			dispatch({
 				type: 'CHANGE_TRUE_FALSE',
 				id: e.target.value,
-				payload: false,
+				payload: { boolean: false, user: user },
 			});
 			//dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 		}

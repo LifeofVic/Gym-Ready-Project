@@ -1,6 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 function* favoriteSaga() {
 	yield takeLatest('SET_FAVORITE', setFavorite);
@@ -44,11 +45,19 @@ function* deleteFavorite(action) {
 }
 
 function* LikeExercise(action) {
-	console.log('In Favorite.Saga / LikeExercise Generator', action.payload);
-
+	console.log(
+		'In Favorite.Saga / LikeExercise Generator',
+		action.payload.user.id,
+		action.payload
+	);
 	try {
-		const like = yield axios.put(`/favorite/${action.id}/${action.payload}`);
+		const like = yield axios.put(
+			`/favorite/${action.id}/${action.payload.boolean}`
+		);
 		console.log('Like results: ', like);
+
+		const favorites = yield axios.get(`/favorite/${action.payload.user.id}`);
+		yield put({ type: 'SET_FAVORITE_LIST', payload: favorites.data });
 	} catch (error) {
 		console.log('Error in favorite.Saga / LikeExercise Generator', error);
 	}
