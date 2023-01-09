@@ -38,7 +38,7 @@ export default function ViewFavorite() {
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
 
-	const EditMode = e => {
+	const UpdateLike = e => {
 		console.log('In Edit Mode', e.target.value);
 		dispatch({ type: 'SET_TO_LIKE', payload: e.target.value });
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
@@ -88,8 +88,7 @@ export default function ViewFavorite() {
 										id='popUp'
 										value={exercise.id}
 										variant='contained'
-										onClick={EditMode}>
-										{' '}
+										onClick={UpdateLike}>
 										❤️
 									</Button>
 									<Button
@@ -122,7 +121,7 @@ export default function ViewFavorite() {
 										id='popUp'
 										value={exercise.id}
 										variant='contained'
-										onClick={EditMode}>
+										onClick={UpdateLike}>
 										LIKE
 									</Button>
 									<Button
