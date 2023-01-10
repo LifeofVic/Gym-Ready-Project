@@ -27,9 +27,23 @@ export default function InsertNewExercise() {
 		setMuscleTarget(e.target.value);
 	};
 
+	const InsertExerciseName = e => {
+		setExerciseName(e.target.value);
+	};
+
 	const setExerciseURL = e => {
-		//console.log('GIF URL: ', e.target.value);
+		e.preventDefault();
 		setExerciseGif(e.target.value);
+	};
+
+	const InsertNewExercise = () => {
+		console.log(
+			'ALL THE VALUES: ',
+			muscleGroup,
+			muscleTarget,
+			exerciseGif,
+			exerciseName
+		);
 	};
 
 	return (
@@ -72,7 +86,7 @@ export default function InsertNewExercise() {
 					id='user-input'
 					placeholder='Exercise Name'
 					type='text'
-					onChange={setExerciseURL}
+					onChange={InsertExerciseName}
 				/>
 
 				<input
@@ -83,7 +97,9 @@ export default function InsertNewExercise() {
 				/>
 			</div>
 			<div>
-				<Button variant='contained'>Submit</Button>
+				<Button variant='contained' onClick={InsertNewExercise}>
+					Submit
+				</Button>
 			</div>
 		</>
 	);

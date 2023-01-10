@@ -1,7 +1,7 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import DailyWorkout from '../Dashboard-TodaysWorkout/DailyWorkout';
-import WeeklyRoutine from '../Dashboard-WeeklyRoutine/WeeklyRoutine';
+import SuggestedExercise from '../ExerciseSuggestion/SuggestedExercise.jsx';
 import { useSelector } from 'react-redux';
 
 function Dashboard() {
@@ -12,7 +12,7 @@ function Dashboard() {
 			<h2>Welcome, {user.username}!</h2>
 			<p>Your ID is: {user.id}</p>
 			<DailyWorkout />
-			<WeeklyRoutine />
+			<SuggestedExercise />
 			{/* <LogOutButton className='btn' /> */}
 		</div>
 	);
