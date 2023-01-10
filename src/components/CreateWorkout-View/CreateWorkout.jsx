@@ -56,6 +56,7 @@ export default function CreateWorkout() {
 		setExerciseGif(findGif[0].gif_url);
 	};
 	//This will run where the event handler will set those values into the corresponding local state to be used in the [AddExercise] once the 'Add Exercise' button is clicked on.
+	//TODO FIX THIS ALSO
 	const AddExercise = () => {
 		//!conditional where the 2 drop down menus is not selected then display alert.
 
