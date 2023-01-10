@@ -1,5 +1,20 @@
-.Weekly-Container {
+.suggestion-container {
 	margin: 25px;
 	padding: 10px;
 	border: 1px solid black;
+}
+
+th{
+font-size: 11pt;
+
+}
+
+.image-container{
+width:auto;
+min-width: max-content;
+}
+
+img{
+border: solid black 2pt;
+border-radius: 10pt;
 }

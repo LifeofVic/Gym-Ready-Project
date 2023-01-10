@@ -1,9 +1,7 @@
-//import LogOutButton from '../LogOutButton/LogOutButton';
-//import DailyWorkout from '../Dashboard-TodaysWorkout/DailyWorkout';
-//import SuggestedExercise from '../ExerciseSuggestion/SuggestedExercise.jsx';
 import '../Dashboard/Dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function Dashboard() {
 	// this allows us to use <App /> in index.js
@@ -16,15 +14,12 @@ function Dashboard() {
 	const [RandomExercise, setRandomExercise] = useState([]);
 
 	const dispatch = useDispatch();
+
 	const max = 1327;
 	const min = 1;
-
-	// useEffect(() => {
-	// 	Random;
-	// }, []);
+	const random = Math.floor(Math.random() * (max - min) + min);
 
 	const Random = () => {
-		const random = Math.floor(Math.random() * (max - min) + min);
 		console.log('Random Number is:  ', Number(random));
 		dispatch({
 			type: 'GENERATE_RANDOM_EXERCISE',
@@ -33,26 +28,34 @@ function Dashboard() {
 		setRandomExercise(AllExercises[random]);
 	};
 
+	const GoToSearch = () => {
+		const history = useHistory();
+		history.push('/Create-Workout');
+	};
+
 	return (
-		<>
+		<div className='body-container'>
 			<h2>Welcome, {user.username}!</h2>
 			<p>Your ID is: {user.id}</p>
-			<div className='Weekly-Container'>
-				<h3>Exercise Suggestion:</h3>
 
-				<h5>Exercise Name:</h5>
-				<p>{RandomExercise.exercise_name}</p>
+			<button onClick={Random}>Suggestion ?</button>
+			<table className='suggestion-container' onClick={GoToSearch}>
+				<tr>
+					<th> Exercise Name: </th>
+					<th> Muscle Group: </th>
+					<th> Targeted Muscle: </th>
+				</tr>
+				<tr>
+					<td>{RandomExercise.exercise_name}</td>
+					<td>{RandomExercise.muscle_group}</td>
+					<td>{RandomExercise.muscle_target}</td>
+				</tr>
+			</table>
 
-				<h5>Muscle Group:</h5>
-				<p>{RandomExercise.muscle_group}</p>
-
-				<h5>Targeted Muscle:</h5>
-				<p>{RandomExercise.muscle_target}</p>
-
-				<button onClick={Random}>RANDOM</button>
-				<img src={RandomExercise.gif_url} />
+			<div className='image-container'>
+				<img src={RandomExercise.gif_url} height='200' width='200' />
 			</div>
-		</>
+		</div>
 	);
 }
 
