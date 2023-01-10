@@ -34,10 +34,18 @@ function* getFavorite(action) {
 }
 
 function* deleteFavorite(action) {
-	console.log('In Favorite.Saga / deleteFavorite Generator', action.payload);
+	console.log(
+		'In Favorite.Saga / deleteFavorite Generator',
+		action.payload.exerciseID,
+		action.payload.userID
+	);
 	//Create a delete sql call by passing in the exercise id that is found in the favorites table..action payload will have the values from when the delete button was clicked.
 	try {
-		const deleteFavorite = yield axios.delete(`/favorite/${action.payload}`);
+		const deleteFavorite = yield axios.delete(
+			`/favorite/${action.payload.exerciseID}`
+		);
+		const favorites = yield axios.get(`/favorite/${action.payload.userID}`);
+		yield put({ type: 'SET_FAVORITE_LIST', payload: favorites.data });
 		console.log('DELETION SUCCESSFUL', deleteFavorite);
 	} catch (error) {
 		console.log('Error in favorite.saga / deleteFavorite generator', error);

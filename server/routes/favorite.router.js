@@ -48,8 +48,8 @@ router.post('/', (req, res) => {
 
 router.delete('/:favoriteId', (req, res) => {
 	console.log('IN DELETE ROUTER');
-	console.log('DELETE ROUTER / req.params: ', req.params);
-	const sqlText = 'DELETE FROM "favorites" WHERE "id" = $1;';
+	console.log('DELETE ROUTER / req.params: ', req.params.favoriteId);
+	const sqlText = `DELETE FROM "favorites" WHERE "id" = $1;`;
 	const exerciseId = Number(req.params.favoriteId);
 
 	pool

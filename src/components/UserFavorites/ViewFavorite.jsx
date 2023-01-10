@@ -34,8 +34,11 @@ export default function ViewFavorite() {
 	const DeleteExercise = e => {
 		const deleteId = Number(e.target.value);
 		console.log('Exercise Selected for Deletion: ', deleteId);
-		dispatch({ type: 'DELETE_FAVORITE', payload: deleteId });
-		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
+		dispatch({
+			type: 'DELETE_FAVORITE',
+			payload: { exerciseID: deleteId, userID: user.id },
+		});
+		// dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
 
 	//? This will check the value for the exercise object's like (true / false) that was clicked on. Then th
