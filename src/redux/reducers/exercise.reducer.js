@@ -21,7 +21,17 @@ const InsertGroup = (state = [], action) => {
 	}
 };
 
+const FilteredExercises = (state = [], action) => {
+	switch (action.type) {
+		case 'FILTERED_EXERCISE':
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
 export default combineReducers({
 	exerciseGroup,
+	FilteredExercises,
 	InsertGroup,
 });

@@ -9,6 +9,9 @@ export default function CreateWorkout() {
 	//This uses global state to bring in the array of objects with the same muscle_group which each object will contain:
 	// id / muscle_group / gif_url / exercise_name / muscle_target
 	const GroupedExercise = useSelector(store => store.exercise.exerciseGroup);
+	const FilterExercises = useSelector(
+		store => store.exercise.FilteredExercises
+	);
 
 	const user = useSelector(store => store.user);
 
@@ -19,13 +22,28 @@ export default function CreateWorkout() {
 
 	const history = useHistory();
 
+	const [GroupKeyword, setGroupKeyword] = useState('');
+	const [TargetKeyword, setTargetKeyword] = useState('');
+
 	// This will send the muscle_group value of data type (string) to the exercise.Saga and set result.row to the [store.exercise] where all the exercises with that muscle_group will store in.   GroupedExercise.
 	const ExerciseByGroup = e => {
 		e.preventDefault();
+		setGroupKeyword(e.target.value);
 		console.log('Value is: ', e.target.value);
 		dispatch({ type: 'EXERCISE_BY_GROUP', payload: e.target.value });
 	};
-	//This will run where the event handler will set those values into the corresponding local state to be used in the [AddExercise] once the 'Add Exercise' button is clicked on.
+
+	const ExerciseByTarget = e => {
+		console.log('In Second Drop Down');
+		setTargetKeyword(e.target.value);
+
+		dispatch({
+			type: 'FILTER_EXERCISES_BY_KEYWORDS',
+			payload: { GroupKeyword: GroupKeyword, TargetKeyword: e.target.value },
+		});
+	};
+
+	//TODO FIX THIS TO RENDER ANIMATION TO DIV!!!!!!!!!!!
 	//utilizing the filter method to look through the global store of the grouped exercises and find the one
 	//with the id value as the one event.target.value
 	const SetValues = event => {
@@ -37,7 +55,7 @@ export default function CreateWorkout() {
 		);
 		setExerciseGif(findGif[0].gif_url);
 	};
-
+	//This will run where the event handler will set those values into the corresponding local state to be used in the [AddExercise] once the 'Add Exercise' button is clicked on.
 	const AddExercise = () => {
 		//!conditional where the 2 drop down menus is not selected then display alert.
 
@@ -59,6 +77,7 @@ export default function CreateWorkout() {
 		setExerciseGif('');
 		setExerciseId('');
 	};
+
 	//TODO Create a new view that will allow the user to add a new exercise.
 	const HandleClick = () => {
 		console.log('Add New Exercise had been Clicked!');
@@ -86,13 +105,26 @@ export default function CreateWorkout() {
 					<option value='upper legs'>Upper Legs </option>
 				</select>
 
+				<select placeholder='Target Muscle' onChange={ExerciseByTarget}>
+					<option>Select Specific Muscle </option>
+					{GroupedExercise.map((exercise, index) => {
+						return (
+							<>
+								<option className='Drop-List' key={index} value={exercise.id}>
+									{exercise.muscle_target}
+								</option>
+							</>
+						);
+					})}
+				</select>
+
 				<select
 					placeholder='Exercise'
 					className='exercise-list'
 					id='exercise-list-by-group'
 					onChange={SetValues}>
 					<option>Select Exercise </option>
-					{GroupedExercise.map((exercise, index) => {
+					{FilterExercises.map((exercise, index) => {
 						return (
 							<>
 								<option className='Drop-List' key={index} value={exercise.id}>
