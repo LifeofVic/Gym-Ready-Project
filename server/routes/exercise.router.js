@@ -61,10 +61,10 @@ router.get(`/:groupKeyword/:targetKeyword`, (req, res) => {
 		targetKeyword
 	);
 
-	const sqlText = `SELECT  "muscle_group","muscle_target", "exercise_name" 
+	const sqlText = `SELECT "id", "muscle_group","muscle_target", "exercise_name" , "gif_url" 
 									FROM "exercise" 
 									WHERE "muscle_group" = $1 AND "muscle_target" = $2 
-									GROUP BY "muscle_group","muscle_target", "exercise_name";`;
+									GROUP BY "muscle_group","muscle_target", "exercise_name", "id", "gif_url";`;
 	pool
 		.query(sqlText, [groupKeyword, targetKeyword])
 		.then(result => {

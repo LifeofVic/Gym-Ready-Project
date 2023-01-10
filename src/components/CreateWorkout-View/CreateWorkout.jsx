@@ -42,25 +42,24 @@ export default function CreateWorkout() {
 			payload: { GroupKeyword: GroupKeyword, TargetKeyword: e.target.value },
 		});
 	};
-
-	//TODO FIX THIS TO RENDER ANIMATION TO DIV!!!!!!!!!!!
 	//utilizing the filter method to look through the global store of the grouped exercises and find the one
 	//with the id value as the one event.target.value
 	const SetValues = event => {
-		setExerciseId(event.target.value);
+		setExerciseId(Number(event.target.value));
 		console.log('Selected Exercise ID is: ', event.target.value);
 
-		let findGif = GroupedExercise.filter(
-			object => object.id == event.target.value
+		let findGif = FilterExercises.filter(
+			object => object.id == Number(event.target.value)
 		);
 		setExerciseGif(findGif[0].gif_url);
+		console.log('GIF URL SELECTED IS: ', findGif[0]);
 	};
 	//This will run where the event handler will set those values into the corresponding local state to be used in the [AddExercise] once the 'Add Exercise' button is clicked on.
 	//TODO FIX THIS ALSO
 	const AddExercise = () => {
 		//!conditional where the 2 drop down menus is not selected then display alert.
 
-		const exerciseObject = GroupedExercise.filter(
+		const exerciseObject = FilterExercises.filter(
 			object => object.id == ExerciseId
 		);
 		console.log(
@@ -75,6 +74,7 @@ export default function CreateWorkout() {
 		});
 		document.getElementById('muscle-group').selectedIndex = 0;
 		document.getElementById('exercise-list-by-group').selectedIndex = 0;
+		document.getElementById('Target-group-selector').selectedIndex = 0;
 		setExerciseGif('');
 		setExerciseId('');
 	};
@@ -106,7 +106,10 @@ export default function CreateWorkout() {
 					<option value='upper legs'>Upper Legs </option>
 				</select>
 
-				<select placeholder='Target Muscle' onChange={ExerciseByTarget}>
+				<select
+					placeholder='Target Muscle'
+					id='Target-group-selector'
+					onChange={ExerciseByTarget}>
 					<option>Select Specific Muscle </option>
 					{GroupedExercise.map((exercise, index) => {
 						return (
@@ -138,6 +141,7 @@ export default function CreateWorkout() {
 
 				{/* <input type='number' placeholder='# of sets'></input> */}
 			</div>
+			{/* {JSON.stringify({ ExerciseGif })} */}
 			<div className='exercise-detail'>
 				<img src={ExerciseGif} />
 			</div>
