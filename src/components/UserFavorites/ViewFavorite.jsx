@@ -21,11 +21,6 @@ export default function ViewFavorite() {
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	}, []);
 
-	// const fetchFavorites = () => {
-	// 	console.log('FetchWorkout event listener is working. ');
-	// 	dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
-	// };
-
 	const DisplayAnimation = e => {
 		var imageSource = e.target.value;
 		console.log('Gif: ', imageSource);
@@ -38,7 +33,6 @@ export default function ViewFavorite() {
 			type: 'DELETE_FAVORITE',
 			payload: { exerciseID: deleteId, userID: user.id },
 		});
-		// dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	};
 
 	//? This will check the value for the exercise object's like (true / false) that was clicked on. Then th

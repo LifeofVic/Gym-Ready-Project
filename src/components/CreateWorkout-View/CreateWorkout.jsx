@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
+
 export default function CreateWorkout() {
 	const dispatch = useDispatch();
 	//This uses global state to bring in the array of objects with the same muscle_group which each object will contain:
@@ -58,25 +59,29 @@ export default function CreateWorkout() {
 	//TODO FIX THIS ALSO
 	const AddExercise = () => {
 		//!conditional where the 2 drop down menus is not selected then display alert.
+		if (GroupKeyword != '' && TargetKeyword != '' && ExerciseId != '') {
+			const exerciseObject = FilterExercises.filter(
+				object => object.id == ExerciseId
+			);
+			console.log(
+				'exercise object is: ',
+				exerciseObject[0].id,
+				'user data:',
+				user.id
+			);
+			dispatch({
+				type: 'SET_FAVORITE',
+				payload: { exercise: exerciseObject[0].id, user: user.id },
+			});
 
-		const exerciseObject = FilterExercises.filter(
-			object => object.id == ExerciseId
-		);
-		console.log(
-			'exercise object is: ',
-			exerciseObject[0].id,
-			'user data:',
-			user.id
-		);
-		dispatch({
-			type: 'SET_FAVORITE',
-			payload: { exercise: exerciseObject[0].id, user: user.id },
-		});
-		document.getElementById('muscle-group').selectedIndex = 0;
-		document.getElementById('exercise-list-by-group').selectedIndex = 0;
-		document.getElementById('Target-group-selector').selectedIndex = 0;
-		setExerciseGif('');
-		setExerciseId('');
+			document.getElementById('muscle-group').selectedIndex = 0;
+			document.getElementById('exercise-list-by-group').selectedIndex = 0;
+			document.getElementById('Target-group-selector').selectedIndex = 0;
+			setExerciseGif('');
+			setExerciseId('');
+		} else {
+			console.log('UNABLE TO ADD BLANK ITEMS');
+		}
 	};
 
 	//TODO Create a new view that will allow the user to add a new exercise.
