@@ -99,16 +99,36 @@ export default function CreateWorkout() {
 					id='muscle-group'
 					onChange={ExerciseByGroup}>
 					<option>Select Muscle Group</option>
-					<option value='chest'>Chest </option>
-					<option value='back'>Back </option>
-					<option value='cardio'>Cardio </option>
-					<option value='lower arms'>Lower Arms </option>
-					<option value='waist'>Waist </option>
-					<option value='shoulders'>Shoulders </option>
-					<option value='lower legs'>Lower Legs </option>
-					<option value='neck'>Neck </option>
-					<option value='upper arms'>Upper Arms </option>
-					<option value='upper legs'>Upper Legs </option>
+					<option value='chest' key={1}>
+						Chest
+					</option>
+					<option value='back' key={2}>
+						Back
+					</option>
+					<option value='cardio' key={3}>
+						Cardio
+					</option>
+					<option value='lower arms' key={4}>
+						Lower Arms
+					</option>
+					<option value='waist' key={6}>
+						Waist
+					</option>
+					<option value='shoulders' key={7}>
+						Shoulders
+					</option>
+					<option value='lower legs' key={8}>
+						Lower Legs
+					</option>
+					<option value='neck' key={9}>
+						Neck
+					</option>
+					<option value='upper arms' key={10}>
+						Upper Arms
+					</option>
+					<option value='upper legs' key={11}>
+						Upper Legs
+					</option>
 				</select>
 
 				<select
@@ -118,11 +138,9 @@ export default function CreateWorkout() {
 					<option>Select Specific Muscle </option>
 					{GroupedExercise.map((exercise, index) => {
 						return (
-							<>
-								<option className='Drop-List' key={index} value={exercise.id}>
-									{exercise.muscle_target}
-								</option>
-							</>
+							<option className='Drop-List' key={index} value={exercise.id}>
+								{exercise.muscle_target}
+							</option>
 						);
 					})}
 				</select>
@@ -133,13 +151,14 @@ export default function CreateWorkout() {
 					id='exercise-list-by-group'
 					onChange={SetValues}>
 					<option>Select Exercise </option>
-					{FilterExercises.map((exercise, index) => {
+					{FilterExercises.map(exercise => {
 						return (
-							<>
-								<option className='Drop-List' key={index} value={exercise.id}>
-									{exercise.exercise_name}
-								</option>
-							</>
+							<option
+								className='Drop-List'
+								key={exercise.id}
+								value={exercise.id}>
+								{exercise.exercise_name}
+							</option>
 						);
 					})}
 				</select>
@@ -150,15 +169,20 @@ export default function CreateWorkout() {
 			<div className='exercise-detail'>
 				<img src={ExerciseGif} />
 			</div>
-			<Button className='submit-btn' onClick={AddExercise} variant='contained'>
-				Add To Favorites
-			</Button>
-			<Button
-				className='add-exercise-btn'
-				onClick={HandleClick}
-				variant='contained'>
-				Add New Exercise
-			</Button>
+			<div>
+				<Button
+					className='submit-btn'
+					onClick={AddExercise}
+					variant='contained'>
+					Add To Favorites
+				</Button>
+				<Button
+					className='add-exercise-btn'
+					onClick={HandleClick}
+					variant='contained'>
+					Add New Exercise
+				</Button>
+			</div>
 		</>
 	);
 }

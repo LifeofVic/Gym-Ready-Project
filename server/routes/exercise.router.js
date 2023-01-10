@@ -3,6 +3,19 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+router.get('/', (req, res) => {
+	const sqlText = `SELECT * FROM "exercise" `;
+
+	pool
+		.query(sqlText)
+		.then(result => {
+			res.send(result.rows);
+		})
+		.catch(error => {
+			console.log('Error in getting all Exercises: ', error);
+		});
+});
+
 //This will run the SQL that will also contain the string for the muscle_group.
 //The result for this will contain an array of objects that each object will hold the exercises
 // correlated wit the same muscle_group name.

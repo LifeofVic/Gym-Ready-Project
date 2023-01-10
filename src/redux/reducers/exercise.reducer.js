@@ -30,8 +30,18 @@ const FilteredExercises = (state = [], action) => {
 	}
 };
 
+const AllExercises = (state = [], action) => {
+	switch (action.type) {
+		case 'ALL_EXERCISES_ARRAY':
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
 export default combineReducers({
 	exerciseGroup,
 	FilteredExercises,
 	InsertGroup,
+	AllExercises,
 });

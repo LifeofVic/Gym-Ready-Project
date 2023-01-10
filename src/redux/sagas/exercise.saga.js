@@ -5,6 +5,7 @@ function* exerciseSaga() {
 	yield takeLatest('EXERCISE_BY_GROUP', ExerciseByGroup);
 	yield takeLatest('INSERT_GROUPED_EXERCISE', InsertByGroup);
 	yield takeLatest('FILTER_EXERCISES_BY_KEYWORDS', KeywordFilters);
+	yield takeLatest('GENERATE_RANDOM_EXERCISE', RandomExercise);
 }
 
 //? This will receive the desired exercises by muscle group.
@@ -56,4 +57,14 @@ function* KeywordFilters(action) {
 	}
 }
 
+function* RandomExercise(action) {
+	console.log('Random exercise generator: ', action.payload.exerciseID);
+
+	try {
+		const ExerciseArray = yield axios.get(`/exercise`);
+		yield put({ type: 'ALL_EXERCISES_ARRAY', payload: ExerciseArray.data });
+	} catch (error) {
+		console.log('Error in Random Exercise generator');
+	}
+}
 export default exerciseSaga;
