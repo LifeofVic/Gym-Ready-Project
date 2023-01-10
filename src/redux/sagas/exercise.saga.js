@@ -4,6 +4,7 @@ import axios from 'axios';
 function* exerciseSaga() {
 	yield takeLatest('EXERCISE_BY_GROUP', ExerciseByGroup);
 	yield takeLatest('INSERT_GROUPED_EXERCISE', InsertByGroup);
+	yield takeLatest('FILTER_EXERCISES_BY_KEYWORDS', KeywordFilters);
 }
 
 //? This will receive the desired exercises by muscle group.
@@ -36,6 +37,22 @@ function* InsertByGroup(action) {
 		});
 	} catch (error) {
 		console.log('Error in exercise.saga / ExerciseByGroup / ');
+	}
+}
+
+function* KeywordFilters(action) {
+	console.log(
+		'Keywords: ',
+		action.payload.GroupKeyword,
+		action.payload.TargetKeyword
+	);
+	try {
+		const FilteredExercises = yield axios.get(
+			`/exercise/${action.payload.GroupKeyword}/${action.payload.TargetKeyword}`
+		);
+		yield put({ type: 'FILTERED_EXERCISE', payload: FilteredExercises.data });
+	} catch (error) {
+		console.log('Error in KeywordFilter: ', error);
 	}
 }
 

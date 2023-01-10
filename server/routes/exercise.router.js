@@ -12,7 +12,8 @@ router.get('/:musclegroup', (req, res) => {
 		'Returning all exercise with the following muscle group: ',
 		musclegroup
 	);
-	const queryText = `SELECT * FROM "exercise" WHERE "muscle_group" = $1;`;
+	const queryText = `SELECT  "muscle_group","muscle_target" FROM "exercise" 
+WHERE "muscle_group" = $1 GROUP BY "muscle_group","muscle_target";`;
 	pool
 		.query(queryText, [musclegroup])
 		.then(result => {
@@ -49,12 +50,33 @@ WHERE "muscle_group" = $1 GROUP BY "muscle_group", "muscle_target";`;
 		});
 });
 
-router.get('/:exerciseID', (req, res) => {
-	const exerciseId = req.params.exerciseId;
+router.get(`/:groupKeyword/:targetKeyword`, (req, res) => {
+	const groupKeyword = req.params.groupKeyword;
+	const targetKeyword = req.params.targetKeyword;
+
 	console.log(
-		'Fetching EXERCISE based on the exercise ID provided',
-		exerciseId
+		'Group Keyword: ',
+		groupKeyword,
+		'Target Keyword: ',
+		targetKeyword
 	);
+
+	const sqlText = `SELECT  "muscle_group","muscle_target", "exercise_name" 
+									FROM "exercise" 
+									WHERE "muscle_group" = $1 AND "muscle_target" = $2 
+									GROUP BY "muscle_group","muscle_target", "exercise_name";`;
+	pool
+		.query(sqlText, [groupKeyword, targetKeyword])
+		.then(result => {
+			res.send(result.rows);
+		})
+		.catch(error => {
+			console.log(
+				'Error is found in Exercise.Router / :GroupKeyword / :TargetKeyword',
+				error
+			);
+			res.sendStatus(500);
+		});
 });
 
 module.exports = router;
