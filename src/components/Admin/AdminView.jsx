@@ -24,8 +24,8 @@ export default function AdminView() {
 			<table className='admin-table'>
 				<tr>
 					<th></th>
-					<th>User:</th>
-					<th>Exercise Name:</th>
+					<th>User</th>
+					<th>Exercise</th>
 				</tr>
 				{adminAccess.map((favorite, index) => {
 					return (

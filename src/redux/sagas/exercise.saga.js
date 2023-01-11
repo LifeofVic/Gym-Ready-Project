@@ -58,7 +58,7 @@ function* KeywordFilters(action) {
 }
 
 function* RandomExercise(action) {
-	console.log('Random exercise generator: ', action.payload.exerciseID);
+	console.log('Random exercise generator: ');
 
 	try {
 		const ExerciseArray = yield axios.get(`/exercise`);

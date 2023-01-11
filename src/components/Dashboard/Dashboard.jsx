@@ -2,6 +2,7 @@ import '../Dashboard/Dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function Dashboard() {
 	// this allows us to use <App /> in index.js
@@ -11,57 +12,81 @@ function Dashboard() {
 
 	const AllExercises = useSelector(store => store.exercise.AllExercises);
 
-	const [RandomExercise, setRandomExercise] = useState([]);
+	const [RandomNumber, setRandomNumber] = useState(0);
 
 	const dispatch = useDispatch();
 
-	const max = 1327;
-	const min = 1;
-	const random = Math.floor(Math.random() * (max - min) + min);
-
 	const Random = () => {
+		const max = 1327;
+		const min = 1;
+		const random = Math.floor(Math.random() * (max - min) + min);
 		console.log('Random Number is:  ', Number(random));
+		setRandomNumber(random);
+	};
+
+	const saveExercise = () => {
+		console.log('Clicked on Save');
+	};
+
+	useEffect(() => {
 		dispatch({
 			type: 'GENERATE_RANDOM_EXERCISE',
-			payload: { exerciseID: random },
 		});
-		setRandomExercise(AllExercises[random]);
-	};
+	}, []);
+
 	const history = useHistory();
 
 	const GoToSearch = () => {
 		history.push('/search-exercise');
 	};
 
-	return (
-		<div className='body-container'>
-			<h2>Welcome, {user.username}!</h2>
-			<p>Your ID is: {user.id}</p>
-
-			<button onClick={Random}>Suggestion ?</button>
-			<table className='suggestion-container' onClick={GoToSearch}>
-				<tr>
-					<th> Exercise Name: </th>
-					<th> Muscle Group: </th>
-					<th> Targeted Muscle: </th>
-				</tr>
-				<tr>
-					<td>{RandomExercise.exercise_name}</td>
-					<td>{RandomExercise.muscle_group}</td>
-					<td>{RandomExercise.muscle_target}</td>
-				</tr>
-			</table>
-
-			<div className='image-container'>
-				<img
-					src={RandomExercise.gif_url}
-					height='200'
-					width='200'
-					id='home-image'
-				/>
+	if (AllExercises.length == 0) {
+		return (
+			<div className='body-container'>
+				<h2>Welcome, {user.username}!</h2>
+				{/* <p>Your ID is: {user.id}</p> */}
+				<div>
+					<button onClick={Random}>Suggestion ?</button>
+				</div>
 			</div>
-		</div>
-	);
-}
+		);
+	} else {
+		return (
+			<div className='body-container'>
+				<h2>Welcome, {user.username}!</h2>
+				<p>Your ID is: {user.id}</p>
+				<div>
+					<Button onClick={Random} variant='contained'>
+						Suggestion ?
+					</Button>
+					<Button onClick={saveExercise} variant='contained'>
+						Save
+					</Button>
+				</div>
 
+				{/* < className='suggestion-container' onClick={GoToSearch}> */}
+				<div className='suggestion-container'>
+					<div className='home-exercise-group'>
+						<h4> Targeted Muscle: </h4>
+						<p>{AllExercises[RandomNumber].muscle_group}</p>
+					</div>
+
+					<div className='home-exercise-gif'>
+						<h4>Muscle Group: </h4>
+						<p>{AllExercises[RandomNumber].muscle_target}</p>
+					</div>
+
+					<div className='home-exercise-name'>
+						<h4> Exercise Name: </h4>
+						<p>{AllExercises[RandomNumber].exercise_name}</p>
+					</div>
+
+					<div>
+						<img src={AllExercises[RandomNumber].gif_url} />
+					</div>
+				</div>
+			</div>
+		);
+	}
+}
 export default Dashboard;

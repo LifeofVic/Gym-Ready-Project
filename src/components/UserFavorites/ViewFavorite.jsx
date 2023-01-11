@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import '../UserFavorites/ViewFavorite.css';
 import { useHistory } from 'react-router-dom';
@@ -134,7 +137,8 @@ export default function ViewFavorite() {
 											value={exercise.id}
 											variant='contained'
 											onClick={UpdateLike}>
-											LIKE
+											{' '}
+											Like
 										</Button>
 									</td>
 									<td>

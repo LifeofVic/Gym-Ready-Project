@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import SaveIcon from '@mui/icons-material/Save';
 
 export default function CreateWorkout() {
 	const dispatch = useDispatch();
@@ -172,8 +174,10 @@ export default function CreateWorkout() {
 				<Button
 					className='submit-btn'
 					onClick={AddExercise}
-					variant='contained'>
-					Add To Favorites
+					variant='contained'
+					style={{ maxWidth: '250px', color: 'white' }}>
+					<SaveIcon />
+					Add To Favorite
 				</Button>
 				{/* <Button
 					className='add-exercise-btn'
