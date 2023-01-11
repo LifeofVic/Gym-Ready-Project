@@ -27,10 +27,10 @@ function Dashboard() {
 		});
 		setRandomExercise(AllExercises[random]);
 	};
+	const history = useHistory();
 
 	const GoToSearch = () => {
-		const history = useHistory();
-		history.push('/Create-Workout');
+		history.push('/search-exercise');
 	};
 
 	return (

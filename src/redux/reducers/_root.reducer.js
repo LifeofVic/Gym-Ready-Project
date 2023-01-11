@@ -4,6 +4,7 @@ import user from './user.reducer';
 import exercise from './exercise.reducer';
 import favorite from './favorite.reducer';
 import animation from './animation.reducer';
+import admin from './admin.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
 	exercise,
 	favorite,
 	animation,
+	admin,
 });
 
 export default rootReducer;

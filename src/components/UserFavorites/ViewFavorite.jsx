@@ -137,7 +137,6 @@ export default function ViewFavorite() {
 											LIKE
 										</Button>
 									</td>
-
 									<td>
 										<Button
 											className='view-btn'
