@@ -2,6 +2,7 @@ import '../Dashboard/Dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './Admin.css';
 
 export default function AdminView() {
 	const user = useSelector(store => store.user);
@@ -16,8 +17,26 @@ export default function AdminView() {
 	}, []);
 
 	return (
-		<div>
-			<h1> WE are viewing the Admin page</h1>
-		</div>
+		<>
+			<div className='admin-view-header'>
+				<h2> Admin View</h2>
+			</div>
+			<table className='admin-table'>
+				<tr>
+					<th></th>
+					<th>User:</th>
+					<th>Exercise Name:</th>
+				</tr>
+				{adminAccess.map((favorite, index) => {
+					return (
+						<tr className='user-content-row'>
+							<td id='admin-users-id'>{favorite.user_id}</td>
+							<td id='admin-users-username'>{favorite.username}</td>
+							<td id='admin-users-exercise'>{favorite.exercise_name}</td>
+						</tr>
+					);
+				})}
+			</table>
+		</>
 	);
 }

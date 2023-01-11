@@ -1,0 +1,15 @@
+.admin-table{
+margin-top: 75pt;
+}
+
+#admin-users-id, #admin-users-username, #admin-users-exercise {
+border: solid;
+padding: 5pt;
+}
+
+.admin-view-header{
+background-color: #0cb000;
+height: 50pt;
+margin-top: 0;
+
+}
