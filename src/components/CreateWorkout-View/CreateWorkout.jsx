@@ -84,11 +84,10 @@ export default function CreateWorkout() {
 		}
 	};
 
-	//TODO Create a new view that will allow the user to add a new exercise.
-	const HandleClick = () => {
-		console.log('Add New Exercise had been Clicked!');
-		history.push('/InsertNewExercise');
-	};
+	// const HandleClick = () => {
+	// 	console.log('Add New Exercise had been Clicked!');
+	// 	history.push('/InsertNewExercise');
+	// };
 
 	return (
 		<>
@@ -176,12 +175,12 @@ export default function CreateWorkout() {
 					variant='contained'>
 					Add To Favorites
 				</Button>
-				<Button
+				{/* <Button
 					className='add-exercise-btn'
 					onClick={HandleClick}
 					variant='contained'>
 					Add New Exercise
-				</Button>
+				</Button> */}
 			</div>
 		</>
 	);

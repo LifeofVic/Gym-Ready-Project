@@ -7,7 +7,9 @@ export default function AnimationView() {
 	console.log('Here in Animation View');
 	const Exercise = useSelector(store => store.animation);
 	console.log('Current State of AnimationView: ', Exercise);
+
 	const history = useHistory();
+
 	const BackToFavPage = () => {
 		history.push('/favorite');
 	};
