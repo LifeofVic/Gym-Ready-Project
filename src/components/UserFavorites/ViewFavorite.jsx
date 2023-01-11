@@ -70,10 +70,10 @@ export default function ViewFavorite() {
 
 	return (
 		<>
+			<div className='favorites-view-header'>
+				<h2> Favorite Exercise List</h2>
+			</div>
 			<div className='container'>
-				<p>Todays Workout View</p>
-				<p>Will List all the exercise associated with todays day.</p>
-
 				<tr id='table-header'>
 					<th>Exercise Name</th>
 					<th>Targeted Muscle</th>
@@ -90,21 +90,21 @@ export default function ViewFavorite() {
 								<tr className='button-options'>
 									<td>
 										<Button
-											className='view-btn'
-											value={exercise.id}
-											onClick={DisplayAnimation}
-											variant='contained'>
-											VIEW
-										</Button>
-									</td>
-									<td>
-										<Button
 											className='edit-btn'
 											id='popUp'
 											value={exercise.id}
 											variant='contained'
 											onClick={UpdateLike}>
 											❤️
+										</Button>
+									</td>
+									<td>
+										<Button
+											className='view-btn'
+											value={exercise.id}
+											onClick={DisplayAnimation}
+											variant='contained'>
+											VIEW
 										</Button>
 									</td>
 									<td>
@@ -127,29 +127,37 @@ export default function ViewFavorite() {
 									<td id='target-muscle'> {exercise.muscle_target} </td>
 								</tr>
 								<tr className='button-options'>
-									<Button
-										className='view-btn'
-										value={exercise.id}
-										onClick={DisplayAnimation}
-										variant='contained'
-										type='button'>
-										VIEW
-									</Button>
-									<Button
-										className='edit-btn'
-										id='popUp'
-										value={exercise.id}
-										variant='contained'
-										onClick={UpdateLike}>
-										LIKE
-									</Button>
-									<Button
-										className='delete-btn'
-										value={exercise.id}
-										variant='contained'
-										onClick={DeleteExercise}>
-										DELETE
-									</Button>
+									<td>
+										<Button
+											className='edit-btn'
+											id='popUp'
+											value={exercise.id}
+											variant='contained'
+											onClick={UpdateLike}>
+											LIKE
+										</Button>
+									</td>
+
+									<td>
+										<Button
+											className='view-btn'
+											value={exercise.id}
+											onClick={DisplayAnimation}
+											variant='contained'
+											type='button'>
+											VIEW
+										</Button>
+									</td>
+
+									<td>
+										<Button
+											className='delete-btn'
+											value={exercise.id}
+											variant='contained'
+											onClick={DeleteExercise}>
+											DELETE
+										</Button>
+									</td>
 								</tr>
 							</table>
 						);
