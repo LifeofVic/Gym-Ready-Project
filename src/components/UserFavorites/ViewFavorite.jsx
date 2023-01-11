@@ -70,10 +70,10 @@ export default function ViewFavorite() {
 
 	return (
 		<>
+			<div className='favorites-view-header'>
+				<h2> Favorite Exercise List</h2>
+			</div>
 			<div className='container'>
-				<p>Todays Workout View</p>
-				<p>Will List all the exercise associated with todays day.</p>
-
 				<tr id='table-header'>
 					<th>Exercise Name</th>
 					<th>Targeted Muscle</th>
@@ -147,6 +147,7 @@ export default function ViewFavorite() {
 											VIEW
 										</Button>
 									</td>
+
 									<td>
 										<Button
 											className='delete-btn'
