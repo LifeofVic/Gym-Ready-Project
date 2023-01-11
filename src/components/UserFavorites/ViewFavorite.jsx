@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 
 import '../UserFavorites/ViewFavorite.css';
+import { useHistory } from 'react-router-dom';
 
 //TODO This will display the View page for the users workout for the day.
 //? Will have to insert workouts for each user in order to display them onto the view page.
@@ -16,14 +17,20 @@ export default function ViewFavorite() {
 	console.log('Favorite List: ', data); //?Hold an ARRAY of OBJECT received from the database using the sql query and saving them into the reducer aka store.favorite...
 
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	useEffect(() => {
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	}, []);
 
 	const DisplayAnimation = e => {
-		var imageSource = e.target.value;
-		console.log('Gif: ', imageSource);
+		console.log('View Button on Exercise Clicked: ', e.target.value);
+
+		dispatch({
+			type: 'DISPLAY_ANIMATION_VIEW',
+			payload: e.target.value,
+		});
+		history.push(`/animation/${e.target.value}`);
 	};
 
 	const DeleteExercise = e => {
@@ -46,14 +53,11 @@ export default function ViewFavorite() {
 		if (exerciseObject[0].like === false) {
 			//! This switches to LIKE ---------
 			console.log('In Edit Mode', e.target.value); //holds the value for the exercise id found in the table "exercises".
-
 			dispatch({
 				type: 'CHANGE_TRUE_FALSE',
 				id: e.target.value,
 				payload: { boolean: true, user: user },
 			});
-			//dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } }); //!move to favorite saga.
-			//! -------------------------------
 		}
 		if (exerciseObject[0].like === true) {
 			dispatch({
@@ -61,33 +65,20 @@ export default function ViewFavorite() {
 				id: e.target.value,
 				payload: { boolean: false, user: user },
 			});
-			//dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 		}
 	};
-
-	//! This was a test run to get the buttons that appear below each elements when displayed on the favorites page to hide/shoe option buttons
-	// var optionsButton = document.getElementById('more-options');
-
-	// optionsButton.onClick = function () {
-	// 	var div = document.getElementById('button-options');
-	// 	if (div.style.display !== 'none') {
-	// 		div.style.display = 'none';
-	// 	} else {
-	// 		div.style.display = 'block';
-	// 	}
-	// };
 
 	return (
 		<>
 			<div className='container'>
 				<p>Todays Workout View</p>
 				<p>Will List all the exercise associated with todays day.</p>
-				<th id='table-header'>
-					<tr>
-						<th>Exercise Name</th>
-						<th>Targeted Muscle</th>
-					</tr>
-				</th>
+
+				<tr id='table-header'>
+					<th>Exercise Name</th>
+					<th>Targeted Muscle</th>
+				</tr>
+
 				{data.map((exercise, index) => {
 					if (exercise.like == true) {
 						return (
@@ -97,28 +88,34 @@ export default function ViewFavorite() {
 									<td id='target-muscle'> {exercise.muscle_target} </td>
 								</tr>
 								<tr className='button-options'>
-									<Button
-										className='view-btn'
-										value={exercise.gif_url}
-										onClick={DisplayAnimation}
-										variant='contained'>
-										VIEW
-									</Button>
-									<Button
-										className='edit-btn'
-										id='popUp'
-										value={exercise.id}
-										variant='contained'
-										onClick={UpdateLike}>
-										❤️
-									</Button>
-									<Button
-										className='delete-btn'
-										value={exercise.id}
-										variant='contained'
-										onClick={DeleteExercise}>
-										DELETE
-									</Button>
+									<td>
+										<Button
+											className='view-btn'
+											value={exercise.id}
+											onClick={DisplayAnimation}
+											variant='contained'>
+											VIEW
+										</Button>
+									</td>
+									<td>
+										<Button
+											className='edit-btn'
+											id='popUp'
+											value={exercise.id}
+											variant='contained'
+											onClick={UpdateLike}>
+											❤️
+										</Button>
+									</td>
+									<td>
+										<Button
+											className='delete-btn'
+											value={exercise.id}
+											variant='contained'
+											onClick={DeleteExercise}>
+											DELETE
+										</Button>
+									</td>
 								</tr>
 							</table>
 						);
@@ -132,9 +129,10 @@ export default function ViewFavorite() {
 								<tr className='button-options'>
 									<Button
 										className='view-btn'
-										value={exercise.gif_url}
+										value={exercise.id}
 										onClick={DisplayAnimation}
-										variant='contained'>
+										variant='contained'
+										type='button'>
 										VIEW
 									</Button>
 									<Button

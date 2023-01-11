@@ -8,6 +8,7 @@ function* favoriteSaga() {
 	yield takeLatest('FETCH_FAVORITE', getFavorite);
 	yield takeLatest('DELETE_FAVORITE', deleteFavorite);
 	yield takeLatest('CHANGE_TRUE_FALSE', LikeExercise);
+	yield takeLatest('DISPLAY_ANIMATION_VIEW', ViewAnimation);
 }
 //This will send the object of the entire exercise the user chooses to save to their favorite table.
 function* setFavorite(action) {
@@ -71,4 +72,13 @@ function* LikeExercise(action) {
 	}
 }
 
+function* ViewAnimation(action) {
+	console.log('Animation URL: ', action.payload);
+
+	// try {
+	// 	//	const animation = axios.get(`/exercise/${action.payload}`);
+	// } catch (error) {
+	// 	console.log(`Error is found in View Animation generator: `, error);
+	// }
+}
 export default favoriteSaga;

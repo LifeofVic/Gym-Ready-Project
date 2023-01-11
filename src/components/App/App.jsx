@@ -22,6 +22,7 @@ import CreateWorkout from '../CreateWorkout-View/CreateWorkout';
 import './App.css';
 import ViewFavorite from '../UserFavorites/ViewFavorite';
 import InsertNewExercise from '../InsertNewExercise/InsertNewExercise';
+import AnimationView from '../AnimationView/AnimationView';
 
 function App() {
 	const dispatch = useDispatch();
@@ -69,7 +70,7 @@ function App() {
 					<ProtectedRoute
 						// logged in shows InfoPage else shows LoginPage
 						exact
-						path='/create-workout'>
+						path='/search-exercise'>
 						<CreateWorkout />
 					</ProtectedRoute>
 
@@ -78,6 +79,13 @@ function App() {
 						exact
 						path='/InsertNewExercise'>
 						<InsertNewExercise />
+					</ProtectedRoute>
+
+					<ProtectedRoute
+						// logged in shows InfoPage else shows LoginPage
+						exact
+						path='/animation/:id'>
+						<AnimationView />
 					</ProtectedRoute>
 
 					<Route exact path='/login'>

@@ -5,6 +5,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import routineSaga from './routine.saga';
 import favoriteSaga from './favorite.saga';
+import animationSaga from './animation.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
 		exerciseSaga(),
 		routineSaga(),
 		favoriteSaga(),
+		animationSaga(),
 	]);
 }

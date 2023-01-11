@@ -53,7 +53,12 @@ function Dashboard() {
 			</table>
 
 			<div className='image-container'>
-				<img src={RandomExercise.gif_url} height='200' width='200' />
+				<img
+					src={RandomExercise.gif_url}
+					height='200'
+					width='200'
+					id='home-image'
+				/>
 			</div>
 		</div>
 	);

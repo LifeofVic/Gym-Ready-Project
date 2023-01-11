@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const exerciseRouter = require('./routes/exercise.router');
 const routineRouter = require('./routes/routine.router');
 const favoriteRouter = require('./routes/favorite.router');
+const animationRouter = require('./routes/animation.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/exercise', exerciseRouter);
 app.use('/routine', routineRouter);
 app.use('/favorite', favoriteRouter);
+app.use('/animation/', animationRouter);
 
 // Serve static files
 app.use(express.static('build'));

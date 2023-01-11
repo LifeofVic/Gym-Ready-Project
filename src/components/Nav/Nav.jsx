@@ -32,7 +32,7 @@ function Nav() {
 							Favorite
 						</Link>
 
-						<Link className='navLink' to='/create-workout'>
+						<Link className='navLink' to='/search-exercise'>
 							Search Exercise
 						</Link>
 						<LogOutButton className='navLink' />

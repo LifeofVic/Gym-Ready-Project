@@ -14,7 +14,7 @@ width:auto;
 min-width: max-content;
 }
 
-img{
+#home-image{
 border: solid black 2pt;
 border-radius: 10pt;
 }
