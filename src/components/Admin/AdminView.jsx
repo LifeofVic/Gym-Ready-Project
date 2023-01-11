@@ -5,15 +5,19 @@ import { useHistory } from 'react-router-dom';
 
 export default function AdminView() {
 	const user = useSelector(store => store.user);
-	console.log('USER info: ', user);
 
+	const adminAccess = useSelector(store => store.admin);
+
+	console.log('Current State of Admin Reducer: ', adminAccess);
 	const dispatch = useDispatch();
 
-	dispatch({ type: 'FETCH_EVERY_FAVORITE', payload: user });
+	useEffect(() => {
+		dispatch({ type: 'FETCH_EVERY_FAVORITE', payload: user.access_level });
+	}, []);
 
 	return (
 		<div>
-			<h1> WE are view admin page</h1>
+			<h1> WE are viewing the Admin page</h1>
 		</div>
 	);
 }

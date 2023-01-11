@@ -6,14 +6,25 @@ const {
 	rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-//? This will allow the admin to receive data from the database to see all the data from the favorite TABLE, as admin has a access_level of 10.
-router.get('/all', rejectUnauthenticated, (req, res) => {
-	console.log('In favorite router, ', req.user);
+//! This will allow the admin to receive data from the database to see all the data from the favorite TABLE, as admin has an access_level of 10.
+router.get('/admin/:id', rejectUnauthenticated, (req, res) => {
+	const accessLevel = req.params.id;
+	console.log('In favorite router, ');
 	const sqlText = `SELECT "favorites".id, "user_id","username", "exercise_id", "exercise_name", "muscle_group", "muscle_target"
 	FROM "favorites"
 	JOIN "user" ON "user".id = "favorites".user_id
 	JOIN "exercise" ON "exercise".id = "favorites".exercise_id 
 	WHERE "access_level" <= $1;`;
+
+	pool
+		.query(sqlText, [accessLevel])
+		.then(result => {
+			res.send(result.rows);
+		})
+		.catch(error => {
+			console.log('Error found in router.get / favorite.router ', error);
+			res.sendStatus(500);
+		});
 });
 
 //This will allow to get the users entire favorite table that contains the exercises that they favorite.

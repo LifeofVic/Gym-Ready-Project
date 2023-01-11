@@ -80,5 +80,12 @@ function* FetchAllFavorites(action) {
 		'Action payload',
 		action.payload
 	);
+	try {
+		const admin = yield axios.get(`/favorite/admin/${action.payload}`);
+		console.log('Admin data: ', admin);
+		yield put({ type: 'ADMIN_ACCESS', payload: admin.data });
+	} catch (error) {
+		console.log('Error found in FetchAllFavorites Generator: ', error);
+	}
 }
 export default favoriteSaga;
