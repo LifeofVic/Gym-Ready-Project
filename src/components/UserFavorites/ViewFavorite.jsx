@@ -90,21 +90,21 @@ export default function ViewFavorite() {
 								<tr className='button-options'>
 									<td>
 										<Button
-											className='view-btn'
-											value={exercise.id}
-											onClick={DisplayAnimation}
-											variant='contained'>
-											VIEW
-										</Button>
-									</td>
-									<td>
-										<Button
 											className='edit-btn'
 											id='popUp'
 											value={exercise.id}
 											variant='contained'
 											onClick={UpdateLike}>
 											❤️
+										</Button>
+									</td>
+									<td>
+										<Button
+											className='view-btn'
+											value={exercise.id}
+											onClick={DisplayAnimation}
+											variant='contained'>
+											VIEW
 										</Button>
 									</td>
 									<td>
@@ -128,20 +128,20 @@ export default function ViewFavorite() {
 								</tr>
 								<tr className='button-options'>
 									<Button
-										className='view-btn'
-										value={exercise.id}
-										onClick={DisplayAnimation}
-										variant='contained'
-										type='button'>
-										VIEW
-									</Button>
-									<Button
 										className='edit-btn'
 										id='popUp'
 										value={exercise.id}
 										variant='contained'
 										onClick={UpdateLike}>
 										LIKE
+									</Button>
+									<Button
+										className='view-btn'
+										value={exercise.id}
+										onClick={DisplayAnimation}
+										variant='contained'
+										type='button'>
+										VIEW
 									</Button>
 									<Button
 										className='delete-btn'

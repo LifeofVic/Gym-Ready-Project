@@ -23,6 +23,7 @@ import './App.css';
 import ViewFavorite from '../UserFavorites/ViewFavorite';
 import InsertNewExercise from '../InsertNewExercise/InsertNewExercise';
 import AnimationView from '../AnimationView/AnimationView';
+import AdminView from '../Admin/AdminView';
 
 function App() {
 	const dispatch = useDispatch();
@@ -58,6 +59,13 @@ function App() {
 						exact
 						path='/user'>
 						<Dashboard />
+					</ProtectedRoute>
+
+					<ProtectedRoute
+						// logged in shows InfoPage else shows LoginPage
+						exact
+						path='/admin'>
+						<AdminView />
 					</ProtectedRoute>
 
 					<ProtectedRoute

@@ -2,10 +2,22 @@ const { response } = require('express');
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+	rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
-//const user = useSelector(store => store.user);
+//? This will allow the admin to receive data from the database to see all the data from the favorite TABLE, as admin has a access_level of 10.
+router.get('/all', rejectUnauthenticated, (req, res) => {
+	console.log('In favorite router, ', req.user);
+	const sqlText = `SELECT "favorites".id, "user_id","username", "exercise_id", "exercise_name", "muscle_group", "muscle_target"
+	FROM "favorites"
+	JOIN "user" ON "user".id = "favorites".user_id
+	JOIN "exercise" ON "exercise".id = "favorites".exercise_id 
+	WHERE "access_level" <= $1;`;
+});
+
+//This will allow to get the users entire favorite table that contains the exercises that they favorite.
 router.get('/:id', (req, res) => {
-	//This will allow to get the users entire favorite table that contains the exercises that they favorite.
 	console.log('Router.GET / Req.body: ', req.params.id);
 
 	const userId = req.params.id;
@@ -72,7 +84,6 @@ router.put('/:likeExerciseID/:TrueFalse', (req, res) => {
 		ExerciseID,
 		'Current '
 	);
-
 	const sqlText = `UPDATE "favorites" SET "like" = $1 WHERE "id" = $2 `;
 	pool
 		.query(sqlText, [TrueFalse, ExerciseID])
