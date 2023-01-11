@@ -127,29 +127,35 @@ export default function ViewFavorite() {
 									<td id='target-muscle'> {exercise.muscle_target} </td>
 								</tr>
 								<tr className='button-options'>
-									<Button
-										className='edit-btn'
-										id='popUp'
-										value={exercise.id}
-										variant='contained'
-										onClick={UpdateLike}>
-										LIKE
-									</Button>
-									<Button
-										className='view-btn'
-										value={exercise.id}
-										onClick={DisplayAnimation}
-										variant='contained'
-										type='button'>
-										VIEW
-									</Button>
-									<Button
-										className='delete-btn'
-										value={exercise.id}
-										variant='contained'
-										onClick={DeleteExercise}>
-										DELETE
-									</Button>
+									<td>
+										<Button
+											className='edit-btn'
+											id='popUp'
+											value={exercise.id}
+											variant='contained'
+											onClick={UpdateLike}>
+											LIKE
+										</Button>
+									</td>
+									<td>
+										<Button
+											className='view-btn'
+											value={exercise.id}
+											onClick={DisplayAnimation}
+											variant='contained'
+											type='button'>
+											VIEW
+										</Button>
+									</td>
+									<td>
+										<Button
+											className='delete-btn'
+											value={exercise.id}
+											variant='contained'
+											onClick={DeleteExercise}>
+											DELETE
+										</Button>
+									</td>
 								</tr>
 							</table>
 						);
