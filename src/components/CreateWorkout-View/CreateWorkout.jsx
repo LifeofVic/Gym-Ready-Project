@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import SaveIcon from '@mui/icons-material/Save';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import { AlertTitle } from '@mui/material';
 
 export default function CreateWorkout() {
 	const dispatch = useDispatch();
@@ -15,6 +17,8 @@ export default function CreateWorkout() {
 	const FilterExercises = useSelector(
 		store => store.exercise.FilteredExercises
 	);
+
+	const [alert, setAlert] = useState(false);
 
 	const user = useSelector(store => store.user);
 
@@ -62,9 +66,11 @@ export default function CreateWorkout() {
 	const AddExercise = () => {
 		//!conditional where the 2 drop down menus is not selected then display alert.
 		if (GroupKeyword != '' && TargetKeyword != '' && ExerciseId != '') {
+			setAlert(true);
 			const exerciseObject = FilterExercises.filter(
 				object => object.id == ExerciseId
 			);
+
 			console.log(
 				'exercise object is: ',
 				exerciseObject[0].id,
@@ -75,7 +81,6 @@ export default function CreateWorkout() {
 				type: 'SET_FAVORITE',
 				payload: { exercise: exerciseObject[0].id, user: user.id },
 			});
-
 			document.getElementById('muscle-group').selectedIndex = 0;
 			document.getElementById('exercise-list-by-group').selectedIndex = 0;
 			document.getElementById('Target-group-selector').selectedIndex = 0;
@@ -83,6 +88,10 @@ export default function CreateWorkout() {
 			setExerciseId('');
 		} else {
 			console.log('UNABLE TO ADD BLANK ITEMS');
+			<Alert severity='error'>
+				<AlertTitle> Error</AlertTitle>
+				UNABLE TO ADD BLANK ITEMS
+			</Alert>;
 		}
 	};
 
@@ -176,15 +185,8 @@ export default function CreateWorkout() {
 					onClick={AddExercise}
 					variant='contained'
 					style={{ maxWidth: '250px', color: 'white' }}>
-					<SaveIcon />
 					Add To Favorite
 				</Button>
-				{/* <Button
-					className='add-exercise-btn'
-					onClick={HandleClick}
-					variant='contained'>
-					Add New Exercise
-				</Button> */}
 			</div>
 		</>
 	);
