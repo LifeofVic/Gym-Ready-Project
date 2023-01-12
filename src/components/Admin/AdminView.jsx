@@ -17,15 +17,15 @@ export default function AdminView() {
 	}, []);
 
 	return (
-		<>
+		<div className='admin-content'>
 			<div className='admin-view-header'>
 				<h2> Admin View</h2>
 			</div>
 			<table className='admin-table'>
 				<tr>
-					<th></th>
+					<th>ID</th>
 					<th>User</th>
-					<th>Exercise</th>
+					<th>Exercise Name</th>
 				</tr>
 				{adminAccess.map((favorite, index) => {
 					return (
@@ -37,6 +37,6 @@ export default function AdminView() {
 					);
 				})}
 			</table>
-		</>
+		</div>
 	);
 }

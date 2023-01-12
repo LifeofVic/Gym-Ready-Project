@@ -1,5 +1,5 @@
 .admin-table{
-margin-top: 75pt;
+margin-top: 10pt;
 }
 
 #admin-users-id, #admin-users-username, #admin-users-exercise {
@@ -12,4 +12,7 @@ background-color: #0cb000;
 height: 50pt;
 margin-top: 0;
 
+}
+.admin-content{
+margin-bottom: 100pt;
 }
