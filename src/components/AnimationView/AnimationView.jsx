@@ -19,12 +19,13 @@ export default function AnimationView() {
 		<>
 			<div className='animation-view-container'>
 				<img
-					src={Exercise.gif_url}
+					src={Exercise[0].gif_url}
 					height='400'
 					width='350'
 					id='animation-view'
 				/>
 			</div>
+
 			<Grid align='center'>
 				<Button
 					onClick={BackToFavPage}

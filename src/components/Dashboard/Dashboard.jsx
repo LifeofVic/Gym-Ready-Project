@@ -46,10 +46,6 @@ function Dashboard() {
 
 	const history = useHistory();
 
-	const GoToSearch = () => {
-		history.push('/search-exercise');
-	};
-
 	if (AllExercises.length == 0) {
 		return (
 			<div className='body-container'>
@@ -64,7 +60,7 @@ function Dashboard() {
 		return (
 			<div className='body-container'>
 				<h2>Welcome, {user.username}!</h2>
-				<p>Your ID is: {user.id}</p>
+				<p> Your ID is: {user.id} </p>
 
 				<Box textAlign='center'>
 					<Button onClick={Random} variant='contained'>
@@ -78,13 +74,13 @@ function Dashboard() {
 
 				{/* < className='suggestion-container' onClick={GoToSearch}> */}
 				<div className='suggestion-container'>
-					<div className='home-exercise-group'>
-						<h4> Targeted Muscle: </h4>
+					<div className='home-exercise-gif'>
+						<h4>Muscle Group: </h4>
 						<p>{AllExercises[RandomNumber].muscle_group}</p>
 					</div>
 
-					<div className='home-exercise-gif'>
-						<h4>Muscle Group: </h4>
+					<div className='home-exercise-group'>
+						<h4> Targeted Muscle: </h4>
 						<p>{AllExercises[RandomNumber].muscle_target}</p>
 					</div>
 

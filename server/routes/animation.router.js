@@ -4,9 +4,9 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/:id', (req, res) => {
-	const sqlText = `SELECT * FROM "exercise" WHERE "id" = $1`;
+	const sqlText = `SELECT * FROM "exercise" WHERE "id" = $1 ORDER BY "exercise_name" ASC`;
 	// const exerciseId = Number(req.params.id);
-	const exerciseId = req.params.id;
+	const exerciseId = Number(req.params.id);
 	console.log('Router.get in Animation.Router / exerciseId: ', req.params.id);
 
 	pool

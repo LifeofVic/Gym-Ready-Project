@@ -12,7 +12,7 @@ function* DisplayAnimation(action) {
 	try {
 		const animation = yield axios.get(`/animation/${action.payload}`);
 		console.log('Animation after router.get : ', animation.data);
-		yield put({ type: 'SET_ANIMATION', payload: animation.data[0] });
+		yield put({ type: 'SET_ANIMATION', payload: animation.data });
 	} catch (error) {
 		console.log('Error in DisplayAnimation Generator: ', error);
 	}

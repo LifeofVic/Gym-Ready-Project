@@ -99,14 +99,14 @@ export default function ViewFavorite() {
 										<Button
 											className='edit-btn'
 											id='popUp'
-											value={exercise.id}
+											value={exercise.exercise_id}
 											variant='contained'
 											onClick={UpdateLike}>
 											❤️
 										</Button>
 										<Button
 											className='view-btn'
-											value={exercise.id}
+											value={exercise.exercise_id}
 											onClick={DisplayAnimation}
 											variant='contained'>
 											VIEW
@@ -146,7 +146,7 @@ export default function ViewFavorite() {
 										</Button>
 										<Button
 											className='view-btn'
-											value={exercise.id}
+											value={exercise.exercise_id}
 											onClick={DisplayAnimation}
 											variant='contained'>
 											VIEW
