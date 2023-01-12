@@ -7,7 +7,8 @@ import Button from '@mui/material/Button';
 import SaveIcon from '@mui/icons-material/Save';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import { AlertTitle } from '@mui/material';
+import { AlertTitle, Grid } from '@mui/material';
+import Box from '@mui/material/Box';
 
 export default function CreateWorkout() {
 	const dispatch = useDispatch();
@@ -179,15 +180,15 @@ export default function CreateWorkout() {
 			<div className='exercise-detail'>
 				<img src={ExerciseGif} />
 			</div>
-			<div>
+			<Box textAlign='center'>
 				<Button
 					className='submit-btn'
 					onClick={AddExercise}
 					variant='contained'
-					style={{ maxWidth: '250px', color: 'white' }}>
+					style={{ color: 'white' }}>
 					Add To Favorite
 				</Button>
-			</div>
+			</Box>
 		</>
 	);
 }
