@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { Grid } from '@mui/material';
 import './Animation.css';
 
 export default function AnimationView() {
@@ -24,9 +25,14 @@ export default function AnimationView() {
 					id='animation-view'
 				/>
 			</div>
-			<Button onClick={BackToFavPage} variant='contained'>
-				Back
-			</Button>
+			<Grid align='center'>
+				<Button
+					onClick={BackToFavPage}
+					variant='contained'
+					sx={{ width: '130pt' }}>
+					Back
+				</Button>
+			</Grid>
 		</>
 	);
 }

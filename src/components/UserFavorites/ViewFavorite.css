@@ -4,6 +4,11 @@ padding-bottom: 75px;
 margin: 10px;
 }
 
+.button-options{
+align-items: center;
+margin-left: 15pt;
+}
+
 
 .Exercise-content{
 border: solid black;
@@ -29,16 +34,6 @@ width: 100%;
 inline-size: min-content;
 }
 
-.view-btn{
-margin-left: 10px;
-}
-.edit-btn {
-	margin-left: 10px;
-}
-.delete-btn {
-	margin-left: 10px;
-}
-
 select{
 font-size: 14pt;
 height: 26px; 
@@ -50,4 +45,6 @@ height: 28px;
 .filter-section{
 border-radius: 15px;
 }
+
+
 
