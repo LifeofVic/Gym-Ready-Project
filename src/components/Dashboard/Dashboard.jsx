@@ -2,7 +2,9 @@ import '../Dashboard/Dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
 function Dashboard() {
 	// this allows us to use <App /> in index.js
@@ -26,6 +28,14 @@ function Dashboard() {
 
 	const saveExercise = () => {
 		console.log('Clicked on Save');
+
+		dispatch({
+			type: 'SET_FAVORITE',
+			payload: {
+				user: user.id,
+				exercise: AllExercises[RandomNumber].id,
+			},
+		});
 	};
 
 	useEffect(() => {
@@ -55,14 +65,16 @@ function Dashboard() {
 			<div className='body-container'>
 				<h2>Welcome, {user.username}!</h2>
 				<p>Your ID is: {user.id}</p>
-				<div>
+
+				<Box textAlign='center'>
 					<Button onClick={Random} variant='contained'>
-						Suggestion ?
+						Suggestion <QuestionMarkIcon />
 					</Button>
 					<Button onClick={saveExercise} variant='contained'>
 						Save
+						<SaveIcon />
 					</Button>
-				</div>
+				</Box>
 
 				{/* < className='suggestion-container' onClick={GoToSearch}> */}
 				<div className='suggestion-container'>
