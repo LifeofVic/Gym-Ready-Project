@@ -4,74 +4,46 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
 
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-
 function Nav() {
 	const user = useSelector(store => store.user);
-	const [value, setValue] = React.useState(0);
 
 	return (
-		<Box className='nav'>
+		<div className='nav'>
 			{/* <Link to='/home'>
 				<h2 className='nav-title'>Gym Ready</h2>
 			</Link> */}
-			<BottomNavigation
-				showLabels
-				value={value}
-				onChange={newValue => {
-					setValue(newValue);
-				}}>
+			<div>
 				{/* If no user is logged in, show these links */}
 				{!user.id && (
 					// If there's no user, show login/registration links
-					<BottomNavigationAction
-						className='navLink'
-						value='/login'
-						label='Login / Register'>
+					<Link className='navLink' to='/login'>
 						Login / Register
-					</BottomNavigationAction>
+					</Link>
 				)}
 
 				{/* If a user is logged in, show these links */}
 				{user.id && (
 					<>
-						<BottomNavigationAction
-							className='navLink'
-							value='/user'
-							label='user'
-							component={Link}
-							to='/user'></BottomNavigationAction>
+						<Link className='navLink' to='/user'>
+							Home
+						</Link>
 
-						<BottomNavigationAction
-							className='navLink'
-							value='/favorite'
-							label='Favorite'
-							component={Link}
-							to='/favorite'></BottomNavigationAction>
+						<Link className='navLink' to='/favorite'>
+							Favorite
+						</Link>
 
-						<BottomNavigationAction
-							className='navLink'
-							value='/search-exercise'
-							label='Search Exercise'
-							component={Link}
-							to='/search-exercise'></BottomNavigationAction>
-
-						<BottomNavigationAction>
-							<LogOutButton className='navLink' />
-						</BottomNavigationAction>
+						<Link className='navLink' to='/search-exercise'>
+							Search Exercise
+						</Link>
+						<LogOutButton className='navLink' />
 					</>
 				)}
 
-				<BottomNavigationAction
-					className='navLink'
-					value='/about'
-					label='About'>
+				<Link className='navLink' to='/about'>
 					About
-				</BottomNavigationAction>
-			</BottomNavigation>
-		</Box>
+				</Link>
+			</div>
+		</div>
 	);
 }
 
