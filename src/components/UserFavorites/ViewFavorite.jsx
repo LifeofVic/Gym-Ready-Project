@@ -52,19 +52,18 @@ export default function ViewFavorite() {
 		const exerciseObject = data.filter(object => object.id == e.target.value);
 		console.log(
 			'The object needed to be updated on click is:  ',
-			exerciseObject[0]
+			exerciseObject
 		);
 
 		if (exerciseObject[0].like === false) {
 			//! This switches to LIKE ---------
-			console.log('In Edit Mode', e.target.value); //holds the value for the exercise id found in the table "exercises".
+			console.log(e.target.value); //holds the value for the exercise id found in the table "exercises".
 			dispatch({
 				type: 'CHANGE_TRUE_FALSE',
 				id: e.target.value,
 				payload: { boolean: true, user: user },
 			});
-		}
-		if (exerciseObject[0].like === true) {
+		} else if (exerciseObject[0].like === true) {
 			dispatch({
 				type: 'CHANGE_TRUE_FALSE',
 				id: e.target.value,
@@ -99,7 +98,7 @@ export default function ViewFavorite() {
 										<Button
 											className='edit-btn'
 											id='popUp'
-											value={exercise.exercise_id}
+											value={exercise.id}
 											variant='contained'
 											onClick={UpdateLike}>
 											❤️
