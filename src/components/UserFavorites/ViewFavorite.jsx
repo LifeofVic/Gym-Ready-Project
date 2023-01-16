@@ -28,14 +28,14 @@ export default function ViewFavorite() {
 		dispatch({ type: 'FETCH_FAVORITE', payload: { user: user.id } });
 	}, []);
 
-	const DisplayAnimation = e => {
-		console.log('View Button on Exercise Clicked: ', e.target.value);
+	const DisplayAnimation = exercise => {
+		console.log('View Button on Exercise Clicked: ', exercise.exercise_id);
 
 		dispatch({
-			type: 'DISPLAY_ANIMATION_VIEW',
-			payload: e.target.value,
+			type: 'SET_ANIMATION',
+			payload: exercise,
 		});
-		history.push(`/animation/${e.target.value}`);
+		history.push(`/animation/${exercise.exercise_id}`);
 	};
 
 	const DeleteExercise = e => {
@@ -106,7 +106,7 @@ export default function ViewFavorite() {
 										<Button
 											className='view-btn'
 											value={exercise.exercise_id}
-											onClick={DisplayAnimation}
+											onClick={() => DisplayAnimation(exercise)}
 											variant='contained'>
 											VIEW
 										</Button>
@@ -146,7 +146,7 @@ export default function ViewFavorite() {
 										<Button
 											className='view-btn'
 											value={exercise.exercise_id}
-											onClick={DisplayAnimation}
+											onClick={() => DisplayAnimation(exercise)}
 											variant='contained'>
 											VIEW
 										</Button>

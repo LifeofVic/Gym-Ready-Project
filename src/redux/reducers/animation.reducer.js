@@ -1,4 +1,4 @@
-const AnimationView = (state = [], action) => {
+const AnimationView = (state = {}, action) => {
 	switch (action.type) {
 		case 'SET_ANIMATION':
 			return action.payload;
