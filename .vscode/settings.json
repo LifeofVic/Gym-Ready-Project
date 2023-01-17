@@ -1,4 +1,13 @@
 {
 	"cSpell.ignoreWords": ["musclegroup"],
-	"cSpell.words": ["dayof", "swal", "sweetalert", "toastify", "todaysworkout"]
+	"cSpell.words": [
+		"dayof",
+		"gitqr",
+		"linkqr",
+		"qrcode",
+		"swal",
+		"sweetalert",
+		"toastify",
+		"todaysworkout"
+	]
 }
