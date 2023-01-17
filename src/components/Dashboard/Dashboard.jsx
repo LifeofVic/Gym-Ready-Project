@@ -52,7 +52,6 @@ function Dashboard() {
 			<div className='body-container'>
 				<div className='welcome'>
 					<h2>Welcome, {user.username}!</h2>
-					<p>Your ID is: {user.id}</p>
 				</div>
 
 				<div>
@@ -65,7 +64,6 @@ function Dashboard() {
 			<div className='body-container'>
 				<div className='welcome'>
 					<h2>Welcome, {user.username}!</h2>
-					<p> Your ID is: {user.id} </p>
 				</div>
 				<Box textAlign='center'>
 					<Button onClick={Random} variant='contained'>
