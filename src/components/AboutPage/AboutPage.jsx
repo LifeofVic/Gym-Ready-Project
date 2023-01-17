@@ -12,26 +12,31 @@ import '../AboutPage/AboutPage.css';
 
 function AboutPage() {
 	return (
-		<div className='about-container'>
-			<h1>About</h1>
-			<p>
-				Gym Ready helps users have hundred's of exercises readily available.
-				Categorize exercises by muscle group and the muscle being targeted. Gym
-				Ready also provides the animation for every exercise to have a visual
-				representation of how to properly execute each movement.
+		<>
+			<Grid className='about-container' align='center'>
+				<h1>About</h1>
+			</Grid>
+			<p className='about-paragraph'>
+				Gym Ready helps users have access to hundred's of exercises readily
+				available on their mobile device. Categorize exercises by muscle groups
+				and save them for future use. Gym Ready provides helpful animations to
+				users so they can perform each exercise correctly. Bringing the
+				confidence on your next workout session.
 			</p>
-
-			<h5>Technologies used:</h5>
-			<ul>
-				<li>Javascript</li>
-				<li>React.js</li>
-				<li>React-Saga</li>
-				<li>React-Redux</li>
-				<li>PostgreSQL</li>
-				<li>Node.js</li>
-				<li>Express.js</li>
-				<li>Material UI</li>
-			</ul>
+			<div className='tech-list'>
+				<h3>Technologies used:</h3>
+				<ul className='unordered-list'>
+					<li>Javascript</li>
+					<li>React.js</li>
+					<li>React-Saga</li>
+					<li>React-Redux</li>
+					<li>PostgreSQL</li>
+					<li>Node.js</li>
+					<li>Express.js</li>
+					<li>Material UI</li>
+					<li>React-Toastify</li>
+				</ul>
+			</div>
 			<Grid align='center'>
 				<IconButton href='https://github.com/LifeofVic'>
 					<GitHubIcon sx={{ fontSize: 100 }} />
@@ -41,8 +46,9 @@ function AboutPage() {
 					<LinkedInIcon sx={{ fontSize: 100 }} />
 				</IconButton>
 			</Grid>
-		</div>
+			{/* <img src='documentation/images/githubQRcode.jpg' alt='githubQRcode' />
+			<img src='..q/images/githubQRcode.jpg' alt='linkedinQRcode' /> */}
+		</>
 	);
 }
-
 export default AboutPage;

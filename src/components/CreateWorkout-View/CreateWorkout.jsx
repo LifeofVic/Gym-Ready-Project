@@ -9,6 +9,8 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import { AlertTitle, Grid } from '@mui/material';
 import Box from '@mui/material/Box';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function CreateWorkout() {
 	const dispatch = useDispatch();
@@ -68,6 +70,9 @@ export default function CreateWorkout() {
 		//!conditional where the 2 drop down menus is not selected then display alert.
 		if (GroupKeyword != '' && TargetKeyword != '' && ExerciseId != '') {
 			setAlert(true);
+			toast.success('Successfully added to Favorites!', {
+				position: toast.POSITION.BOTTOM_CENTER,
+			});
 			const exerciseObject = FilterExercises.filter(
 				object => object.id == ExerciseId
 			);
@@ -89,10 +94,9 @@ export default function CreateWorkout() {
 			setExerciseId('');
 		} else {
 			console.log('UNABLE TO ADD BLANK ITEMS');
-			<Alert severity='error'>
-				<AlertTitle> Error</AlertTitle>
-				UNABLE TO ADD BLANK ITEMS
-			</Alert>;
+			toast.warn('Please Select an Exercise!', {
+				position: toast.POSITION.BOTTOM_CENTER,
+			});
 		}
 	};
 
@@ -103,7 +107,9 @@ export default function CreateWorkout() {
 
 	return (
 		<>
-			{/* <header className='Create-Workout-Header'>Create Your Workout</header> */}
+			<Grid align='center'>
+				<h1 className='Search-Exercise-Header'>Search Exercise 🔎</h1>
+			</Grid>
 			<div className='filter-section'>
 				<select
 					placeholder='Muscle-Group'
@@ -173,8 +179,6 @@ export default function CreateWorkout() {
 						);
 					})}
 				</select>
-
-				{/* <input type='number' placeholder='# of sets'></input> */}
 			</div>
 			{/* {JSON.stringify({ ExerciseGif })} */}
 			<div className='exercise-detail'>
@@ -189,15 +193,18 @@ export default function CreateWorkout() {
 					Add To Favorite
 				</Button>
 			</Box>
+			<ToastContainer
+				position='bottom-center'
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable
+				pauseOnHover
+				theme='light'
+			/>
 		</>
 	);
 }
-
-//! This will allow the exercises names to be displayed onto the DOM in the dropdown filter.
-/* {GroupedExercise.map(exercise => {
-					return (
-						<>
-							<p> {exercise.exercise_name} </p>
-						</>
-					);
-				})} */

@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Stack from '@mui/material/Stack';
+import { useHistory } from 'react-router-dom';
+import { Grid, MenuItem, Typography } from '@mui/material';
 
 import '../UserFavorites/ViewFavorite.css';
-import { useHistory } from 'react-router-dom';
-import { Grid, MenuItem } from '@mui/material';
 
 //TODO This will display the View page for the users workout for the day.
 //? Will have to insert workouts for each user in order to display them onto the view page.
@@ -74,22 +71,25 @@ export default function ViewFavorite() {
 
 	return (
 		<>
-			<div className='favorites-view-header'>
-				<h2> Favorite Exercise List</h2>
-			</div>
+			<Grid id='table-header' align='center'>
+				<h1> Favorites List ✍️</h1>
+			</Grid>
 			<div className='container'>
-				<tr id='table-header'>
-					<th>Exercise Name</th>
-					<th>Targeted Muscle</th>
-				</tr>
-
 				{data.map((exercise, index) => {
 					if (exercise.like == true) {
 						return (
-							<Grid className='Exercise-content-liked'>
+							<Grid className='Exercise-content-liked' key={index}>
 								<Grid key={exercise.id} id='row-content'>
-									<MenuItem id='name'>{exercise.exercise_name} </MenuItem>
-									<MenuItem id='target-muscle'>
+									<MenuItem id='name' sx={{ height: 5 }}>
+										<p>Exercise: </p>
+										{exercise.exercise_name}
+									</MenuItem>
+									<MenuItem id='muscle-group' sx={{ height: 5 }}>
+										<p>Muscle Group: </p>
+										{exercise.muscle_group}
+									</MenuItem>
+									<MenuItem id='muscle-target' sx={{ height: 5 }}>
+										<p>Targeted Muscle: </p>
 										{exercise.muscle_target}
 									</MenuItem>
 								</Grid>
@@ -128,8 +128,16 @@ export default function ViewFavorite() {
 						return (
 							<Grid className='Exercise-content'>
 								<Grid key={exercise.id} id='row-content'>
-									<MenuItem id='name'>{exercise.exercise_name} </MenuItem>
-									<MenuItem id='target-muscle'>
+									<MenuItem id='name' sx={{ height: 5 }}>
+										<p>Exercise: </p>
+										{exercise.exercise_name}
+									</MenuItem>
+									<MenuItem id='muscle-group' sx={{ height: 5 }}>
+										<p>Muscle Group: </p>
+										{exercise.muscle_group}
+									</MenuItem>
+									<MenuItem id='muscle-target' sx={{ height: 5 }}>
+										<p>Targeted Muscle: </p>
 										{exercise.muscle_target}
 									</MenuItem>
 								</Grid>

@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import { Grid } from '@mui/material';
 
 function Dashboard() {
 	// this allows us to use <App /> in index.js
@@ -61,7 +62,6 @@ function Dashboard() {
 			<div className='body-container'>
 				<h2>Welcome, {user.username}!</h2>
 				<p> Your ID is: {user.id} </p>
-
 				<Box textAlign='center'>
 					<Button onClick={Random} variant='contained'>
 						Suggestion <QuestionMarkIcon />

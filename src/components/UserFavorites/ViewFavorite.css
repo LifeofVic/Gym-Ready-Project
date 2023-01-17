@@ -34,10 +34,6 @@ width: 100%;
 inline-size: min-content;
 }
 
-select{
-font-size: 14pt;
-height: 26px; 
-}
 .exercise-list{
 height: 28px;
 }
@@ -47,4 +43,7 @@ border-radius: 15px;
 }
 
 
-
+p{
+margin-right: 5pt;
+padding: -10pt;
+}

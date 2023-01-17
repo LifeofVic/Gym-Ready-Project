@@ -1,8 +1,20 @@
-.about-container{
-margin-top: 25pt;
-align-items: center;
+.about-paragraph{
+margin: 15pt;
+font-size: 12pt;
 }
 
-h1{
-margin-left: 10pt;
+.tech-list{
+width: auto;
+text-indent: 2pt;
+text-align: center;
+}
+
+ul.unordered-list{
+display: inline-block;
+text-align: left;
+}
+
+image{
+width: max-content;
+height: max-content;
 }
