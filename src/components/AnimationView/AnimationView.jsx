@@ -23,6 +23,9 @@ export default function AnimationView() {
 
 	return (
 		<>
+			<h3 id='exercise-name-animation'>
+				{ViewExercise.exercise_name.toUpperCase()}
+			</h3>
 			<div className='animation-view-container'>
 				<img
 					src={ViewExercise.gif_url}

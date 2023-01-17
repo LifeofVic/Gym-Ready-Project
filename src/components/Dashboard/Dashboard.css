@@ -18,3 +18,7 @@ min-width: max-content;
 border: solid black 2pt;
 border-radius: 10pt;
 }
+
+.welcome{
+ margin-left: 20pt;
+}

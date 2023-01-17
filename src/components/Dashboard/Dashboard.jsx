@@ -50,8 +50,11 @@ function Dashboard() {
 	if (AllExercises.length == 0) {
 		return (
 			<div className='body-container'>
-				<h2>Welcome, {user.username}!</h2>
-				{/* <p>Your ID is: {user.id}</p> */}
+				<div className='welcome'>
+					<h2>Welcome, {user.username}!</h2>
+					<p>Your ID is: {user.id}</p>
+				</div>
+
 				<div>
 					<button onClick={Random}>Suggestion ?</button>
 				</div>
@@ -60,8 +63,10 @@ function Dashboard() {
 	} else {
 		return (
 			<div className='body-container'>
-				<h2>Welcome, {user.username}!</h2>
-				<p> Your ID is: {user.id} </p>
+				<div className='welcome'>
+					<h2>Welcome, {user.username}!</h2>
+					<p> Your ID is: {user.id} </p>
+				</div>
 				<Box textAlign='center'>
 					<Button onClick={Random} variant='contained'>
 						Suggestion <QuestionMarkIcon />

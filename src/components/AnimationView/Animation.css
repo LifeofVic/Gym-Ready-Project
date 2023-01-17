@@ -1,6 +1,10 @@
 #animation-view{
 margin: auto;
 width: 100%;
-margin-top: 100pt;
+margin-top: 25pt;
 }
 
+#exercise-name-animation {
+margin-top: 25pt;
+text-align: center;
+}
