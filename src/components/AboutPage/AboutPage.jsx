@@ -46,8 +46,20 @@ function AboutPage() {
 					<LinkedInIcon sx={{ fontSize: 100 }} />
 				</IconButton>
 			</Grid>
-			{/* <img src='documentation/images/githubQRcode.jpg' alt='githubQRcode' />
-			<img src='..q/images/githubQRcode.jpg' alt='linkedinQRcode' /> */}
+			<div className='qrcode'>
+				<img
+					src='./images/githubQRcode.jpg'
+					alt='githubQRcode'
+					height='130pt'
+					id='gitqr'
+				/>
+				<img
+					src='./images/linkedinQRcode.jpg'
+					alt='linkedinQRcode'
+					height='130pt'
+					id='linkqr'
+				/>
+			</div>
 		</>
 	);
 }

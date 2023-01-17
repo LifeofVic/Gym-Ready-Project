@@ -17,4 +17,13 @@ text-align: left;
 image{
 width: max-content;
 height: max-content;
+
+}
+
+.qrcode{
+margin-left: 40pt;
+}
+
+#linkqr{
+margin-left: 15pt;
 }
