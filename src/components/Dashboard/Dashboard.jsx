@@ -6,6 +6,8 @@ import { Box, Button } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Grid } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Dashboard() {
 	// this allows us to use <App /> in index.js
@@ -29,7 +31,9 @@ function Dashboard() {
 
 	const saveExercise = () => {
 		console.log('Clicked on Save');
-
+		toast.success('Successfully added to Favorites!', {
+			position: toast.POSITION.BOTTOM_CENTER,
+		});
 		dispatch({
 			type: 'SET_FAVORITE',
 			payload: {
@@ -96,6 +100,18 @@ function Dashboard() {
 						<img src={AllExercises[RandomNumber].gif_url} />
 					</div>
 				</div>
+				<ToastContainer
+					position='bottom-center'
+					autoClose={3000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss={false}
+					draggable
+					pauseOnHover
+					theme='light'
+				/>
 			</div>
 		);
 	}
