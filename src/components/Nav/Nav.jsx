@@ -1,53 +1,76 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
-import { useSelector } from 'react-redux';
-import HomeIcon from '@mui/icons-material/Home';
-import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
-import SearchIcon from '@mui/icons-material/Search';
-import InfoIcon from '@mui/icons-material/Info';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Nav.css";
+import { useSelector } from "react-redux";
+import HomeIcon from "@mui/icons-material/Home";
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
+import SearchIcon from "@mui/icons-material/Search";
+import InfoIcon from "@mui/icons-material/Info";
+import LogoutIcon from "@mui/icons-material/LogoutOutlined";
+
+import Paper from "@mui/material/Paper";
+
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+
 function Nav() {
 	const user = useSelector(store => store.user);
 
 	return (
-		<div className='nav'>
-			{/* <Link to='/home'>
-				<h2 className='nav-title'>Gym Ready</h2>
-			</Link> */}
-			<div>
-				{/* If no user is logged in, show these links */}
-				{!user.id && (
-					// If there's no user, show login/registration links
-					<Link className='navLink' to='/login'>
-						Login / Register
-					</Link>
-				)}
+		<Paper
+			sx={{
+				position: "fixed",
+				bottom: 0,
+				left: 0,
+				right: 0,
+				zIndex: 1,
+				width: "100vw",
+				backgroundColor: "#348d2d",
+			}}>
+			{user.id && (
+				<BottomNavigation showLabels sx={{ backgroundColor: "#348d2d" }}>
+					<BottomNavigationAction
+						label='Home'
+						value='home'
+						icon={<HomeIcon fontSize='large' sx={{ color: "#ffffff" }} />}
+						component={Link}
+						to='/user'
+					/>
+					<BottomNavigationAction
+						label='Favorites'
+						value='home'
+						icon={
+							<BookmarkAddIcon fontSize='large' sx={{ color: "#ffffff" }} />
+						}
+						component={Link}
+						to='/favorite'
+					/>
+					<BottomNavigationAction
+						label='Search'
+						value='home'
+						icon={<SearchIcon fontSize='large' sx={{ color: "#ffffff" }} />}
+						component={Link}
+						to='/search-exercise'
+					/>
 
-				{/* If a user is logged in, show these links */}
-				{user.id && (
-					<>
-						<Link className='navLink' to='/user'>
-							<HomeIcon fontSize='large' />
-						</Link>
+					<BottomNavigationAction
+						label='About'
+						value='about'
+						icon={<InfoIcon fontSize='large' sx={{ color: "#ffffff" }} />}
+						component={Link}
+						to='/about'
+					/>
 
-						<Link className='navLink' to='/favorite'>
-							<BookmarkAddIcon fontSize='large' />
-						</Link>
-
-						<Link className='navLink' to='/search-exercise'>
-							<SearchIcon fontSize='large' />
-						</Link>
-
-						<LogOutButton className='navLink' to='login' />
-					</>
-				)}
-
-				<Link className='navLink' to='/about'>
-					<InfoIcon fontSize='large' />
-				</Link>
-			</div>
-		</div>
+					<BottomNavigationAction
+						label='Log Out'
+						value='logout'
+						icon={<LogoutIcon fontSize='large' sx={{ color: "#ffffff" }} />}
+						component={Link}
+						to='login'
+					/>
+				</BottomNavigation>
+			)}
+		</Paper>
 	);
 }
 
