@@ -71,8 +71,16 @@ function Dashboard() {
 						Welcome, {user.username}!
 					</Typography>
 				</Box>
-				<Box textAlign='center'>
-					<Button onClick={Random} variant='contained'>
+				<Box
+					sx={{
+						display: "flex",
+						flexWrap: "wrap",
+						justifyContent: "center",
+					}}>
+					<Button
+						onClick={Random}
+						variant='contained'
+						sx={{ color: "#ffffff", backgroundColor: "#bcbcbc" }}>
 						Suggestion <QuestionMarkIcon />
 					</Button>
 					<Button onClick={saveExercise} variant='contained'>
@@ -80,22 +88,27 @@ function Dashboard() {
 						<SaveIcon />
 					</Button>
 				</Box>
-
 				{/* < className='suggestion-container' onClick={GoToSearch}> */}
 				<Card className='suggestion-container' raised={true}>
 					<Box className='home-exercise-gif'>
 						<Typography variant='h6'>Muscle Group: </Typography>
-						<Typography>{AllExercises[RandomNumber].muscle_group}</Typography>
+						<Typography fontStyle={"italic"}>
+							{AllExercises[RandomNumber].muscle_group}
+						</Typography>
 					</Box>
 
 					<Box className='home-exercise-group'>
 						<Typography variant='h6'> Targeted Muscle: </Typography>
-						<Typography>{AllExercises[RandomNumber].muscle_target}</Typography>
+						<Typography fontStyle={"italic"}>
+							{AllExercises[RandomNumber].muscle_target}
+						</Typography>
 					</Box>
 
 					<Box className='home-exercise-name'>
 						<Typography variant='h6'> Exercise Name: </Typography>
-						<Typography>{AllExercises[RandomNumber].exercise_name}</Typography>
+						<Typography fontStyle={"italic"}>
+							{AllExercises[RandomNumber].exercise_name}
+						</Typography>
 					</Box>
 
 					<Grid>
