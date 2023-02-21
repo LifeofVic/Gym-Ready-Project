@@ -66,9 +66,11 @@ function Dashboard() {
 	} else {
 		return (
 			<div className='body-container'>
-				<div className='welcome'>
-					<h2>Welcome, {user.username}!</h2>
-				</div>
+				<Box className='welcome'>
+					<Typography variant='h3' mt={2} mb={2}>
+						Welcome, {user.username}!
+					</Typography>
+				</Box>
 				<Box textAlign='center'>
 					<Button onClick={Random} variant='contained'>
 						Suggestion <QuestionMarkIcon />
@@ -82,17 +84,17 @@ function Dashboard() {
 				{/* < className='suggestion-container' onClick={GoToSearch}> */}
 				<Card className='suggestion-container' raised={true}>
 					<Box className='home-exercise-gif'>
-						<Typography>Muscle Group: </Typography>
+						<Typography variant='h6'>Muscle Group: </Typography>
 						<Typography>{AllExercises[RandomNumber].muscle_group}</Typography>
 					</Box>
 
 					<Box className='home-exercise-group'>
-						<Typography> Targeted Muscle: </Typography>
+						<Typography variant='h6'> Targeted Muscle: </Typography>
 						<Typography>{AllExercises[RandomNumber].muscle_target}</Typography>
 					</Box>
 
 					<Box className='home-exercise-name'>
-						<Typography> Exercise Name: </Typography>
+						<Typography variant='h6'> Exercise Name: </Typography>
 						<Typography>{AllExercises[RandomNumber].exercise_name}</Typography>
 					</Box>
 
