@@ -72,6 +72,7 @@ function Dashboard() {
 					</Typography>
 				</Box>
 				<Box
+					gap={4}
 					sx={{
 						display: "flex",
 						flexWrap: "wrap",
