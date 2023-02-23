@@ -112,7 +112,12 @@ function Dashboard() {
 						</Typography>
 					</Box>
 
-					<Grid>
+					<Grid
+						container
+						spacing={0}
+						alignItems='center'
+						direction={"column"}
+						justifyContent='center'>
 						<img src={AllExercises[RandomNumber].gif_url} />
 					</Grid>
 				</Card>
