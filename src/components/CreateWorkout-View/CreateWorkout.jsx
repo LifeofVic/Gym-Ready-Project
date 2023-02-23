@@ -61,6 +61,7 @@ export default function CreateWorkout() {
 	const SetValues = event => {
 		setExerciseId(Number(event.target.value));
 		console.log("Selected Exercise ID is: ", event.target.value);
+		setExerciseName(event.target.key);
 
 		let findGif = FilterExercises.filter(
 			object => object.id == Number(event.target.value)
@@ -189,7 +190,7 @@ export default function CreateWorkout() {
 								return (
 									<MenuItem
 										className='Drop-List'
-										key={exercise.id}
+										key={exercise.muscle_target}
 										value={exercise.id}>
 										{exercise.exercise_name}
 									</MenuItem>
